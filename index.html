@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrayLink — App Sociale Chrétienne</title>
+  <meta name="description" content="PrayLink — Plateforme sociale chrétienne centrée sur la prière, la communauté et les églises.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="mobile-frame">
+
+  <!-- iOS Status Bar -->
+  <div class="status-bar">
+    <span class="time">10:41</span>
+    <span class="icons">
+      <span>📶</span>
+      <span>🔋</span>
+    </span>
+  </div>
+
+  <!-- ================================
+       SCREEN 1: FEED (ACCUEIL)
+       ================================ -->
+  <div class="screen active" id="screen-feed">
+
+    <!-- App Header -->
+    <div class="app-header">
+      <div class="app-logo">
+        <div class="logo-icon">✝</div>
+        <span class="app-name">PrayLink</span>
+      </div>
+      <div class="header-actions">
+        <button class="header-action-btn" title="Rechercher">🔍</button>
+        <button class="header-action-btn" title="Messages">✉️</button>
+      </div>
+    </div>
+
+    <!-- Stories -->
+    <div class="stories-row">
+      <div class="story-item">
+        <div class="story-avatar story-add">
+          <div class="avatar-placeholder">＋</div>
+        </div>
+        <span class="story-name">Ma story</span>
+      </div>
+      <div class="story-item">
+        <div class="story-avatar">
+          <div class="avatar-placeholder">👩🏽</div>
+        </div>
+        <span class="story-name">Marie</span>
+      </div>
+      <div class="story-item">
+        <div class="story-avatar">
+          <div class="avatar-placeholder">👨🏿</div>
+        </div>
+        <span class="story-name">David</span>
+      </div>
+      <div class="story-item">
+        <div class="story-avatar">
+          <div class="avatar-placeholder">👩🏻</div>
+        </div>
+        <span class="story-name">Sarah</span>
+      </div>
+      <div class="story-item">
+        <div class="story-avatar">
+          <div class="avatar-placeholder">👨🏽</div>
+        </div>
+        <span class="story-name">Jean</span>
+      </div>
+      <div class="story-item">
+        <div class="story-avatar">
+          <div class="avatar-placeholder">👩🏾</div>
+        </div>
+        <span class="story-name">Esther</span>
+      </div>
+    </div>
+
+    <!-- Verse of the Day -->
+    <div class="verse-card">
+      <div class="verse-label">✨ Verset du jour</div>
+      <div class="verse-text">« Car je connais les projets que j'ai formés sur vous, dit l'Éternel, projets de paix et non de malheur, afin de vous donner un avenir et de l'espérance. »</div>
+      <div class="verse-reference">Jérémie 29:11</div>
+    </div>
+
+    <!-- Feed Posts -->
+    <div class="feed-container">
+
+      <!-- Post 1 -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar-placeholder blue">👩🏽</div>
+          <div class="post-user-info">
+            <div class="post-username">Marie Dupont <span class="post-badge public">🌍 Public</span></div>
+            <div class="post-time">Il y a 15 min</div>
+          </div>
+          <button class="post-more">⋯</button>
+        </div>
+        <div class="post-content">
+          Merci de prier pour moi, j'ai un examen très important demain matin 🙏 Je ressens beaucoup de stress mais je sais que Dieu est avec moi.
+        </div>
+        <div class="post-hashtags">
+          <span class="hashtag">#priere</span>
+          <span class="hashtag">#examen</span>
+          <span class="hashtag">#confiance</span>
+        </div>
+        <div class="post-social-proof">
+          <span class="social-proof-icon">🙏</span>
+          <span class="social-proof-text">127 personnes prient pour toi</span>
+        </div>
+        <div class="post-actions">
+          <button class="post-action-btn pray-btn" data-post="1">
+            <span class="action-icon">🙏</span>
+            <span>Je prie</span>
+          </button>
+          <button class="post-action-btn comment-btn">
+            <span class="action-icon">💬</span>
+            <span>24</span>
+          </button>
+          <button class="post-action-btn like-btn" data-post="1">
+            <span class="action-icon">❤️</span>
+            <span>89</span>
+          </button>
+          <span class="action-spacer"></span>
+          <button class="post-action-btn share-btn">
+            <span class="action-icon">↗</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar-placeholder gold">👨🏿</div>
+          <div class="post-user-info">
+            <div class="post-username">David Okafor <span class="post-badge church">⛪ Église Béthel</span></div>
+            <div class="post-time">Il y a 1h</div>
+          </div>
+          <button class="post-more">⋯</button>
+        </div>
+        <div class="post-content">
+          🎉 Témoignage : Après 3 ans de prière, j'ai enfin trouvé un emploi ! Dieu est fidèle. Ne perdez jamais espoir, mes frères et sœurs. Il agit en Son temps parfait.
+        </div>
+        <div class="post-hashtags">
+          <span class="hashtag">#témoignage</span>
+          <span class="hashtag">#fidélité</span>
+          <span class="hashtag">#emploi</span>
+        </div>
+        <div class="post-social-proof">
+          <span class="social-proof-icon">❤️</span>
+          <span class="social-proof-text">342 personnes ont aimé</span>
+        </div>
+        <div class="post-actions">
+          <button class="post-action-btn pray-btn" data-post="2">
+            <span class="action-icon">🙏</span>
+            <span>Je prie</span>
+          </button>
+          <button class="post-action-btn comment-btn">
+            <span class="action-icon">💬</span>
+            <span>56</span>
+          </button>
+          <button class="post-action-btn like-btn" data-post="2">
+            <span class="action-icon">❤️</span>
+            <span>342</span>
+          </button>
+          <span class="action-spacer"></span>
+          <button class="post-action-btn share-btn">
+            <span class="action-icon">↗</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar-placeholder purple">👩🏻</div>
+          <div class="post-user-info">
+            <div class="post-username">Sarah Martin <span class="post-badge group">👥 Groupe Femmes</span></div>
+            <div class="post-time">Il y a 3h</div>
+          </div>
+          <button class="post-more">⋯</button>
+        </div>
+        <div class="post-content">
+          Sœurs en Christ, prions ensemble pour la guérison de ma mère. Elle traverse un moment difficile. Votre soutien signifie tellement pour notre famille 💕
+        </div>
+        <div class="post-hashtags">
+          <span class="hashtag">#guérison</span>
+          <span class="hashtag">#prieredefamille</span>
+        </div>
+        <div class="post-social-proof">
+          <span class="social-proof-icon">🙏</span>
+          <span class="social-proof-text">89 personnes prient pour toi</span>
+        </div>
+        <div class="post-actions">
+          <button class="post-action-btn pray-btn" data-post="3">
+            <span class="action-icon">🙏</span>
+            <span>Je prie</span>
+          </button>
+          <button class="post-action-btn comment-btn">
+            <span class="action-icon">💬</span>
+            <span>31</span>
+          </button>
+          <button class="post-action-btn like-btn" data-post="3">
+            <span class="action-icon">❤️</span>
+            <span>156</span>
+          </button>
+          <span class="action-spacer"></span>
+          <button class="post-action-btn share-btn">
+            <span class="action-icon">↗</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Post 4 -->
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar-placeholder green">👨🏽</div>
+          <div class="post-user-info">
+            <div class="post-username">Jean-Pierre L. <span class="post-badge church">⛪ Église Lumière</span></div>
+            <div class="post-time">Il y a 5h</div>
+          </div>
+          <button class="post-more">⋯</button>
+        </div>
+        <div class="post-content">
+          « L'Éternel est mon berger, je ne manquerai de rien. » — Psaume 23:1 ✨ Ce verset m'accompagne chaque jour. Quel est le vôtre ?
+        </div>
+        <div class="post-hashtags">
+          <span class="hashtag">#versetdujour</span>
+          <span class="hashtag">#psaume23</span>
+        </div>
+        <div class="post-actions">
+          <button class="post-action-btn pray-btn" data-post="4">
+            <span class="action-icon">🙏</span>
+            <span>Je prie</span>
+          </button>
+          <button class="post-action-btn comment-btn">
+            <span class="action-icon">💬</span>
+            <span>45</span>
+          </button>
+          <button class="post-action-btn like-btn" data-post="4">
+            <span class="action-icon">❤️</span>
+            <span>210</span>
+          </button>
+          <span class="action-spacer"></span>
+          <button class="post-action-btn share-btn">
+            <span class="action-icon">↗</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Spacer for navbar -->
+      <div style="height: 20px;"></div>
+
+    </div>
+  </div>
+
+  <!-- ================================
+       SCREEN 2: NOTIFICATIONS
+       ================================ -->
+  <div class="screen" id="screen-notifications">
+    <div class="app-header">
+      <div class="app-logo">
+        <span class="app-name" style="font-size:20px; background:none; -webkit-text-fill-color: var(--text-primary);">Activité</span>
+      </div>
+    </div>
+    <div class="placeholder-screen">
+      <div class="placeholder-icon">🔔</div>
+      <div class="placeholder-title">Notifications</div>
+      <div class="placeholder-text">Retrouvez ici toutes vos interactions, demandes de prière et messages de la communauté.</div>
+    </div>
+  </div>
+
+  <!-- ================================
+       SCREEN 3: COMMUNITIES (ÉGLISE)
+       ================================ -->
+  <div class="screen" id="screen-communities">
+
+    <!-- Church Cover -->
+    <div class="church-cover">
+      <div class="church-cover-gradient"></div>
+      <div class="church-cover-overlay"></div>
+      <button class="church-cover-back" onclick="switchScreen('feed')">←</button>
+    </div>
+
+    <!-- Church Info -->
+    <div class="church-info">
+      <div class="church-icon-container">⛪</div>
+      <h1 class="church-name">Église Béthel Paris</h1>
+      <div class="church-location">📍 Paris, 11e arrondissement</div>
+      <div class="church-stats">
+        <div class="church-stat">
+          <span class="church-stat-value">1,247</span>
+          <span class="church-stat-label">Membres</span>
+        </div>
+        <div class="church-stat">
+          <span class="church-stat-value">89</span>
+          <span class="church-stat-label">Prières</span>
+        </div>
+        <div class="church-stat">
+          <span class="church-stat-value">12</span>
+          <span class="church-stat-label">Événements</span>
+        </div>
+      </div>
+      <div class="church-actions">
+        <button class="church-btn primary">✝ Rejoindre</button>
+        <button class="church-btn secondary">💛 Faire un don</button>
+      </div>
+    </div>
+
+    <!-- Church Tabs -->
+    <div class="church-tabs">
+      <button class="church-tab active" data-tab="wall">📝 Mur</button>
+      <button class="church-tab" data-tab="events">📅 Événements</button>
+      <button class="church-tab" data-tab="prayers">🙏 Prières</button>
+      <button class="church-tab" data-tab="members">👥 Membres</button>
+    </div>
+
+    <!-- Tab: Mur (Wall) -->
+    <div class="church-tab-content active" id="tab-wall">
+      <div class="feed-container" style="padding:0;">
+
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar-placeholder gold">⛪</div>
+            <div class="post-user-info">
+              <div class="post-username">Église Béthel <span class="post-badge church">⛪ Officiel</span></div>
+              <div class="post-time">Il y a 2h</div>
+            </div>
+            <button class="post-more">⋯</button>
+          </div>
+          <div class="post-content">
+            🎶 Quel culte extraordinaire ce dimanche ! Merci à tous les bénévoles et au groupe de louange. Revivez les moments forts en story ! #culte #louange
+          </div>
+          <div class="post-social-proof">
+            <span class="social-proof-icon">❤️</span>
+            <span class="social-proof-text">198 personnes ont aimé</span>
+          </div>
+          <div class="post-actions">
+            <button class="post-action-btn pray-btn" data-post="c1">
+              <span class="action-icon">🙏</span>
+              <span>Amen</span>
+            </button>
+            <button class="post-action-btn comment-btn">
+              <span class="action-icon">💬</span>
+              <span>34</span>
+            </button>
+            <button class="post-action-btn like-btn" data-post="c1">
+              <span class="action-icon">❤️</span>
+              <span>198</span>
+            </button>
+            <span class="action-spacer"></span>
+            <button class="post-action-btn share-btn">
+              <span class="action-icon">↗</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="post-card">
+          <div class="post-header">
+            <div class="post-avatar-placeholder blue">👨🏿</div>
+            <div class="post-user-info">
+              <div class="post-username">Pasteur Emmanuel</div>
+              <div class="post-time">Hier</div>
+            </div>
+            <button class="post-more">⋯</button>
+          </div>
+          <div class="post-content">
+            Chers bien-aimés, n'oubliez pas notre soirée de prière ce mercredi à 19h30. Venez avec un cœur ouvert, Dieu va faire de grandes choses ! 🔥
+          </div>
+          <div class="post-actions">
+            <button class="post-action-btn pray-btn" data-post="c2">
+              <span class="action-icon">🙏</span>
+              <span>Amen</span>
+            </button>
+            <button class="post-action-btn comment-btn">
+              <span class="action-icon">💬</span>
+              <span>18</span>
+            </button>
+            <button class="post-action-btn like-btn" data-post="c2">
+              <span class="action-icon">❤️</span>
+              <span>76</span>
+            </button>
+            <span class="action-spacer"></span>
+            <button class="post-action-btn share-btn">
+              <span class="action-icon">↗</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tab: Événements -->
+    <div class="church-tab-content" id="tab-events">
+
+      <div class="event-card">
+        <div class="event-date-box">
+          <span class="event-date-month">AVR</span>
+          <span class="event-date-day">02</span>
+        </div>
+        <div class="event-info">
+          <div class="event-title">Soirée de louange & adoration</div>
+          <div class="event-time">🕐 19h30 — Salle principale</div>
+        </div>
+        <button class="event-attend-btn">Participer</button>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date-box">
+          <span class="event-date-month">AVR</span>
+          <span class="event-date-day">06</span>
+        </div>
+        <div class="event-info">
+          <div class="event-title">Culte de Pâques</div>
+          <div class="event-time">🕐 10h00 — Église Béthel</div>
+        </div>
+        <button class="event-attend-btn">Participer</button>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date-box">
+          <span class="event-date-month">AVR</span>
+          <span class="event-date-day">10</span>
+        </div>
+        <div class="event-info">
+          <div class="event-title">Groupe de jeunes — Bible study</div>
+          <div class="event-time">🕐 18h00 — Salle annexe</div>
+        </div>
+        <button class="event-attend-btn">Participer</button>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date-box">
+          <span class="event-date-month">AVR</span>
+          <span class="event-date-day">15</span>
+        </div>
+        <div class="event-info">
+          <div class="event-title">Maraude solidaire</div>
+          <div class="event-time">🕐 14h00 — Place de la République</div>
+        </div>
+        <button class="event-attend-btn">Participer</button>
+      </div>
+
+    </div>
+
+    <!-- Tab: Prières -->
+    <div class="church-tab-content" id="tab-prayers">
+
+      <div class="prayer-request">
+        <div class="prayer-request-header">
+          <div class="prayer-request-avatar" style="background: var(--accent-blue-light);">👩🏽</div>
+          <div>
+            <div class="prayer-request-name">Marie Dupont</div>
+            <div class="prayer-request-time">Il y a 30 min</div>
+          </div>
+        </div>
+        <div class="prayer-request-text">
+          Priez pour la guérison de mon père qui est hospitalisé. Merci pour votre soutien 🙏
+        </div>
+        <div class="prayer-request-footer">
+          <span class="prayer-count">🙏 45 personnes prient</span>
+          <button class="pray-small-btn">🙏 Prier</button>
+        </div>
+      </div>
+
+      <div class="prayer-request">
+        <div class="prayer-request-header">
+          <div class="prayer-request-avatar" style="background: var(--accent-gold-light);">👨🏻</div>
+          <div>
+            <div class="prayer-request-name">Thomas Bernard</div>
+            <div class="prayer-request-time">Il y a 2h</div>
+          </div>
+        </div>
+        <div class="prayer-request-text">
+          Je cherche un logement à Paris depuis 3 mois. Prions ensemble pour que Dieu ouvre une porte 🏠
+        </div>
+        <div class="prayer-request-footer">
+          <span class="prayer-count">🙏 23 personnes prient</span>
+          <button class="pray-small-btn">🙏 Prier</button>
+        </div>
+      </div>
+
+      <div class="prayer-request">
+        <div class="prayer-request-header">
+          <div class="prayer-request-avatar" style="background: var(--accent-pray-light);">👩🏾</div>
+          <div>
+            <div class="prayer-request-name">Esther Mbeki</div>
+            <div class="prayer-request-time">Il y a 5h</div>
+          </div>
+        </div>
+        <div class="prayer-request-text">
+          Prions pour la paix dans nos familles et dans le monde. Que l'amour de Christ règne partout 🕊️
+        </div>
+        <div class="prayer-request-footer">
+          <span class="prayer-count">🙏 67 personnes prient</span>
+          <button class="pray-small-btn">🙏 Prier</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tab: Membres -->
+    <div class="church-tab-content" id="tab-members">
+      <div class="members-grid">
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-blue-light);">👨🏿</div>
+          <span class="member-name">Pasteur Emmanuel</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-gold-light);">👩🏽</div>
+          <span class="member-name">Marie D.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-pray-light);">👨🏻</div>
+          <span class="member-name">Thomas B.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-green-light);">👩🏾</div>
+          <span class="member-name">Esther M.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-red-light);">👨🏽</div>
+          <span class="member-name">Jean-Pierre L.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-blue-light);">👩🏻</div>
+          <span class="member-name">Sarah M.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-gold-light);">👨🏿</div>
+          <span class="member-name">David O.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-pray-light);">👩🏽</div>
+          <span class="member-name">Ruth K.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-green-light);">👨🏻</div>
+          <span class="member-name">Paul D.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-red-light);">👩🏾</div>
+          <span class="member-name">Grâce N.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-blue-light);">👨🏽</div>
+          <span class="member-name">Luc P.</span>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar" style="background: var(--accent-gold-light);">👩🏻</div>
+          <span class="member-name">Anna T.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacer for navbar -->
+    <div style="height: 20px;"></div>
+
+  </div>
+
+  <!-- ================================
+       SCREEN 4: PROFILE
+       ================================ -->
+  <div class="screen" id="screen-profile">
+    <div class="app-header">
+      <div class="app-logo">
+        <span class="app-name" style="font-size:20px; background:none; -webkit-text-fill-color: var(--text-primary);">Profil</span>
+      </div>
+      <div class="header-actions">
+        <button class="header-action-btn" title="Paramètres">⚙️</button>
+      </div>
+    </div>
+    <div class="profile-header">
+      <div class="profile-avatar-large">👤</div>
+      <div class="profile-name">Victor T.</div>
+      <div class="profile-bio">🙏 Enfant de Dieu • Membre de l'Église Béthel</div>
+      <div class="profile-stats-row">
+        <div class="profile-stat">
+          <div class="profile-stat-value">156</div>
+          <div class="profile-stat-label">Prières</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">3</div>
+          <div class="profile-stat-label">Églises</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-value">42</div>
+          <div class="profile-stat-label">Amis</div>
+        </div>
+      </div>
+      <button class="profile-edit-btn">Modifier le profil</button>
+    </div>
+    <div style="padding: 16px;">
+      <div class="section-title">Mes posts récents</div>
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-avatar-placeholder blue">👤</div>
+          <div class="post-user-info">
+            <div class="post-username">Victor T. <span class="post-badge public">🌍 Public</span></div>
+            <div class="post-time">Il y a 1 jour</div>
+          </div>
+        </div>
+        <div class="post-content">
+          Merci Seigneur pour ta grâce infinie 🙏 Chaque jour est une bénédiction.
+        </div>
+        <div class="post-actions">
+          <button class="post-action-btn pray-btn active">
+            <span class="action-icon">🙏</span>
+            <span>34</span>
+          </button>
+          <button class="post-action-btn comment-btn">
+            <span class="action-icon">💬</span>
+            <span>12</span>
+          </button>
+          <button class="post-action-btn like-btn">
+            <span class="action-icon">❤️</span>
+            <span>67</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================
+       BOTTOM NAVBAR
+       ================================ -->
+  <nav class="bottom-navbar" id="bottom-navbar">
+    <button class="nav-item active" data-screen="feed">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Accueil</span>
+    </button>
+    <button class="nav-item" data-screen="notifications">
+      <span class="nav-icon">🔔</span>
+      <span class="nav-label">Activité</span>
+      <span class="notification-dot"></span>
+    </button>
+    <button class="nav-item create-btn">
+      <span class="nav-icon">✚</span>
+      <span class="nav-label">Créer</span>
+    </button>
+    <button class="nav-item" data-screen="communities">
+      <span class="nav-icon">⛪</span>
+      <span class="nav-label">Église</span>
+    </button>
+    <button class="nav-item" data-screen="profile">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">Profil</span>
+    </button>
+  </nav>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

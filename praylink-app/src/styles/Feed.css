@@ -1,0 +1,443 @@
+/* ========================================
+   Feed — Header, Stories, Verse, Posts
+   ======================================== */
+
+/* --- App Header --- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px 16px;
+  background: var(--bg-primary);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.app-header .app-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-header .app-logo .logo-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-pray));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: white;
+}
+
+.app-header .app-name {
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-pray));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.app-header .header-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.app-header .header-action-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.app-header .header-action-btn:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Stories Row --- */
+.stories-row {
+  display: flex;
+  gap: 14px;
+  padding: 4px 20px 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.stories-row::-webkit-scrollbar { display: none; }
+
+.story-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.story-avatar {
+  width: 62px;
+  height: 62px;
+  border-radius: var(--radius-full);
+  padding: 3px;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-blue), var(--accent-pray));
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.story-avatar:hover {
+  transform: scale(1.06);
+}
+
+.story-avatar img,
+.story-avatar .avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  border: 3px solid var(--bg-primary);
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  background: linear-gradient(135deg, var(--accent-blue-light), var(--accent-pray-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.story-add {
+  background: var(--bg-card);
+  border: 2px dashed var(--border-medium);
+}
+
+.story-add .avatar-placeholder {
+  background: var(--bg-card);
+  border: 3px solid var(--bg-primary);
+  font-size: 24px;
+  color: var(--accent-blue);
+}
+
+.story-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  max-width: 64px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Verse of the Day --- */
+.verse-card {
+  margin: 0 16px 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(107,159,212,0.08), rgba(123,104,238,0.08));
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(107,159,212,0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.verse-card::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  font-size: 72px;
+  font-weight: 800;
+  color: rgba(107,159,212,0.1);
+  line-height: 1;
+}
+
+.verse-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.verse-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  font-style: italic;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.verse-reference {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-pray);
+}
+
+/* --- Feed Cards --- */
+.feed-container {
+  padding: 0 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.post-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.post-card:nth-child(2) { animation-delay: 0.08s; }
+.post-card:nth-child(3) { animation-delay: 0.16s; }
+.post-card:nth-child(4) { animation-delay: 0.24s; }
+
+/* Post Header */
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.post-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.post-avatar-placeholder {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.post-avatar-placeholder.blue { background: var(--accent-blue-light); }
+.post-avatar-placeholder.gold { background: var(--accent-gold-light); }
+.post-avatar-placeholder.purple { background: var(--accent-pray-light); }
+.post-avatar-placeholder.green { background: var(--accent-green-light); }
+
+.post-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.post-username {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.post-time {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 1px;
+}
+
+.post-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.post-badge.public {
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+}
+
+.post-badge.church {
+  background: var(--accent-gold-light);
+  color: var(--accent-gold);
+}
+
+.post-badge.group {
+  background: var(--accent-green-light);
+  color: #2DA698;
+}
+
+.post-more {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Post Content */
+.post-content {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  word-wrap: break-word;
+}
+
+.post-hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.hashtag {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-blue);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.hashtag:hover {
+  color: var(--accent-pray);
+}
+
+/* Post Social Proof */
+.post-social-proof {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: var(--accent-pray-light);
+  border-radius: var(--radius-sm);
+}
+
+.social-proof-icon {
+  font-size: 16px;
+}
+
+.social-proof-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent-pray);
+}
+
+/* Post Actions */
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+}
+
+.post-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-lg);
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Inter', sans-serif;
+}
+
+.post-action-btn:hover {
+  background: var(--bg-primary);
+}
+
+.post-action-btn .action-icon {
+  font-size: 18px;
+  transition: var(--transition);
+}
+
+.post-action-btn.pray-btn:hover,
+.post-action-btn.pray-btn.active {
+  background: var(--accent-pray-light);
+  color: var(--accent-pray);
+}
+
+.post-action-btn.pray-btn.active .action-icon {
+  transform: scale(1.2);
+}
+
+.post-action-btn.comment-btn:hover {
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+}
+
+.post-action-btn.like-btn:hover,
+.post-action-btn.like-btn.active {
+  background: var(--accent-red-light);
+  color: var(--accent-red);
+}
+
+.post-action-btn.like-btn.active .action-icon {
+  transform: scale(1.2);
+}
+
+.action-spacer {
+  flex: 1;
+}
+
+.post-action-btn.share-btn {
+  padding: 8px;
+}
+
+/* Placeholder Screen */
+.placeholder-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 40px;
+  text-align: center;
+}
+
+.placeholder-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.placeholder-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.placeholder-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}

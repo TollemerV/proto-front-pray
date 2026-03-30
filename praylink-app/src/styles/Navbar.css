@@ -1,0 +1,94 @@
+/* ========================================
+   Bottom Navbar
+   ======================================== */
+.bottom-navbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background: var(--bg-navbar);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 8px 16px 0;
+  border-top: 1px solid var(--border-light);
+  z-index: 200;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  border: none;
+  background: none;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+}
+
+.nav-item .nav-icon {
+  font-size: 24px;
+  color: var(--text-tertiary);
+  transition: var(--transition);
+}
+
+.nav-item .nav-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  transition: var(--transition);
+}
+
+.nav-item.active .nav-icon {
+  color: var(--accent-blue);
+}
+
+.nav-item.active .nav-label {
+  color: var(--accent-blue);
+}
+
+.nav-item .notification-dot {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--accent-red);
+  border: 2px solid var(--bg-navbar);
+}
+
+/* Center Create Button */
+.nav-item.create-btn {
+  position: relative;
+  top: -16px;
+}
+
+.nav-item.create-btn .nav-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-pray));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 6px 20px rgba(107,159,212,0.35);
+  transition: var(--transition);
+}
+
+.nav-item.create-btn:hover .nav-icon {
+  transform: scale(1.08);
+  box-shadow: 0 8px 28px rgba(107,159,212,0.45);
+}
+
+.nav-item.create-btn .nav-label {
+  margin-top: 4px;
+}
