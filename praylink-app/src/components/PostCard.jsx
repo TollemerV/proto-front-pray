@@ -15,23 +15,13 @@ export default function PostCard({
   likes,
 }) {
   const [prayed, setPrayed] = useState(false);
-  const [liked, setLiked] = useState(false);
   const [prayAnimate, setPrayAnimate] = useState(false);
-  const [likeAnimate, setLikeAnimate] = useState(false);
 
   const handlePray = () => {
     setPrayed(!prayed);
     if (!prayed) {
       setPrayAnimate(true);
       setTimeout(() => setPrayAnimate(false), 400);
-    }
-  };
-
-  const handleLike = () => {
-    setLiked(!liked);
-    if (!liked) {
-      setLikeAnimate(true);
-      setTimeout(() => setLikeAnimate(false), 400);
     }
   };
 
@@ -74,10 +64,6 @@ export default function PostCard({
         <button className="post-action-btn comment-btn">
           <span className="action-icon">💬</span>
           <span>{comments}</span>
-        </button>
-        <button className={`post-action-btn like-btn${liked ? ' active' : ''}`} onClick={handleLike}>
-          <span className={`action-icon${likeAnimate ? ' pray-animate' : ''}`}>❤️</span>
-          <span>{likes}</span>
         </button>
         <span className="action-spacer"></span>
         <button className="post-action-btn share-btn">

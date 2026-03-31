@@ -19,7 +19,6 @@ const posts = [
     time: 'Il y a 1h',
     content: '🎉 Témoignage : Après 3 ans de prière, j\'ai enfin trouvé un emploi ! Dieu est fidèle. Ne perdez jamais espoir, mes frères et sœurs. Il agit en Son temps parfait.',
     hashtags: ['témoignage', 'fidélité', 'emploi'],
-    socialProof: { icon: '❤️', text: '342 personnes ont aimé' },
     comments: 56, likes: 342,
   },
   {

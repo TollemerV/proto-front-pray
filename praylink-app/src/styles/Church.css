@@ -170,9 +170,12 @@
 
 .church-tab {
   flex: 1;
-  padding: 14px 8px;
+  padding: 10px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   text-align: center;
-  font-size: 13px;
   font-weight: 600;
   color: var(--text-tertiary);
   border: none;
@@ -181,6 +184,15 @@
   position: relative;
   transition: var(--transition);
   font-family: 'Inter', sans-serif;
+}
+
+.church-tab-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.church-tab-label {
+  font-size: 11px;
 }
 
 .church-tab.active {
@@ -372,44 +384,268 @@
   transform: scale(1.04);
 }
 
-/* Members Grid */
-.members-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  padding: 4px;
-}
-
-.member-item {
+/* Members List (Refonte) */
+.members-list {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+}
+
+.member-card {
+  display: flex;
   align-items: center;
-  gap: 6px;
+  background: var(--bg-card);
+  padding: 14px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  gap: 14px;
+}
+
+.member-avatar-wrapper {
+  position: relative;
 }
 
 .member-avatar {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  cursor: pointer;
-  transition: var(--transition);
+  font-size: 20px;
 }
 
-.member-avatar:hover {
-  transform: scale(1.08);
+.member-active-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #34D399;
+  border: 2px solid var(--bg-card);
+}
+
+.member-info {
+  flex: 1;
 }
 
 .member-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.member-role {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.member-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.member-action-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 20px;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.member-action-btn.pray {
+  padding: 6px 12px;
+  background: var(--accent-pray-light);
+  color: var(--accent-pray);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.member-action-btn.pray.active {
+  background: var(--accent-pray);
+  color: white;
+}
+
+.member-action-btn.message {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+/* Nouveaux Styles - Eglise Vivante */
+.church-slogan {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.church-indicators-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.church-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(52, 211, 153, 0.1);
+  border-radius: 20px;
+}
+
+.church-prayer-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(107, 159, 212, 0.1);
+  border-radius: 20px;
+}
+
+.prayer-text {
   font-size: 11px;
   font-weight: 600;
-  color: var(--text-secondary);
-  text-align: center;
-  max-width: 70px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  color: var(--accent-blue);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34D399;
+  animation: pulseLive 2s infinite ease-out;
+}
+
+.live-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #10B981;
+}
+
+@keyframes pulseLive {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+  70% { box-shadow: 0 0 0 4px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+.event-participants {
+  font-size: 12px;
+  color: var(--accent-blue);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.tab-notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 18px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-red);
+}
+
+.ask-prayer-cta-btn {
+  width: 100%;
+  padding: 16px;
+  background: white;
+  border: 2px dashed rgba(107, 159, 212, 0.3);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition);
+  margin-bottom: 24px;
+}
+
+.ask-prayer-cta-btn:hover {
+  background: var(--accent-blue-light);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.prayer-request.status-exaucee {
+  border-left: 4px solid #34D399;
+  background: linear-gradient(to right, rgba(52,211,153,0.05), white 5%);
+}
+
+.prayer-request-info-wrapper {
+  flex: 1;
+}
+
+.prayer-request-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.prayer-status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.prayer-status-badge.en_cours {
+  background: rgba(245, 158, 11, 0.1);
+  color: #D97706;
+}
+
+.prayer-status-badge.exaucee {
+  background: rgba(52, 211, 153, 0.1);
+  color: #059669;
+}
+
+.prayer-request-actions-row {
+  border-top: 1px dashed var(--border-medium);
+  margin-top: 12px;
+  padding-top: 12px;
+  margin-bottom: 12px;
+}
+
+.prayer-evolution-btn {
+  background: none;
+  border: none;
+  color: var(--accent-pray);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--transition);
+}
+
+.prayer-evolution-btn:hover {
+  opacity: 0.8;
+}
+
+.pray-small-btn.prayed {
+  background: var(--accent-pray);
+  color: white;
+}
+
+.highlight-title {
+  color: var(--accent-gold);
 }
