@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function PrayerRequest({ avatar, avatarBg, name, time, text, count, status = 'en_cours' }) {
   const [prayed, setPrayed] = useState(false);
   const [prayerCount, setPrayerCount] = useState(count);
+  const navigate = useNavigate();
 
   const handlePray = () => {
     if (!prayed) {
@@ -28,7 +30,7 @@ export default function PrayerRequest({ avatar, avatarBg, name, time, text, coun
       <div className="prayer-request-text">{text}</div>
       
       <div className="prayer-request-actions-row">
-        <button className="prayer-evolution-btn">
+        <button className="prayer-evolution-btn" onClick={() => navigate('/prayer/1')}>
           Voir l'évolution <span className="arrow-right">→</span>
         </button>
       </div>
