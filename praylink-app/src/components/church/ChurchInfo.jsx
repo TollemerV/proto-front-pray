@@ -1,8 +1,34 @@
+import { useState } from 'react';
+
 export default function ChurchInfo() {
+  const [showInfo, setShowInfo] = useState(false);
+
   return (
     <div className="church-info">
       <div className="church-icon-container">⛪</div>
-      <h1 className="church-name">Église Béthel Paris</h1>
+      
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+        <h1 className="church-name">
+          Église Béthel Paris
+          <button 
+            className="info-bubble-btn"
+            onMouseEnter={() => setShowInfo(true)}
+            onMouseLeave={() => setShowInfo(false)}
+            onClick={() => setShowInfo(!showInfo)}
+            aria-label="Plus d'informations"
+            style={{ position: 'relative' }}
+          >
+            i
+            {showInfo && (
+              <div className="church-info-tooltip">
+                <div className="church-location" style={{ marginBottom: '6px', fontSize: '13px', whiteSpace: 'nowrap' }}>📍 Paris, 11e arrondissement</div>
+                <div className="church-location" style={{ marginBottom: 0, fontSize: '13px', whiteSpace: 'nowrap' }}>📅 Culte le dimanche à 10h00</div>
+              </div>
+            )}
+          </button>
+        </h1>
+      </div>
+
       <p className="church-slogan">"Une famille pour grandir ensemble dans la présence de Dieu."</p>
       
       <div className="church-indicators-group">
@@ -15,9 +41,7 @@ export default function ChurchInfo() {
         </div>
       </div>
 
-      <div className="church-location" style={{ marginBottom: '6px' }}>📍 Paris, 11e arrondissement</div>
-      <div className="church-location">📅 Culte le dimanche à 10h00</div>
-      <div className="church-stats">
+      <div className="church-stats" style={{ marginTop: '16px' }}>
         <div className="church-stat">
           <span className="church-stat-value">1,247</span>
           <span className="church-stat-label">Membres</span>
