@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import BottomNavbar from './components/BottomNavbar';
 import Feed from './pages/Feed';
@@ -5,6 +6,7 @@ import Notifications from './pages/Notifications';
 import Communities from './pages/Communities';
 import Profile from './pages/Profile';
 import PrayerThread from './pages/PrayerThread';
+import CreatePostModal from './components/CreatePostModal';
 
 import './index.css';
 import './styles/MobileFrame.css';
@@ -13,10 +15,12 @@ import './styles/Church.css';
 import './styles/Navbar.css';
 import './styles/Profile.css';
 import './styles/PrayerThread.css';
+import './styles/CreatePost.css';
 
 function AppContent() {
   const location = useLocation();
   const hideBottomNav = location.pathname.startsWith('/prayer');
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   return (
     <div className="mobile-frame">
@@ -41,7 +45,10 @@ function AppContent() {
       </div>
 
       {/* Bottom Navigation */}
-      {!hideBottomNav && <BottomNavbar />}
+      {!hideBottomNav && <BottomNavbar onOpenCreate={() => setIsCreateOpen(true)} />}
+
+      {/* Modals */}
+      <CreatePostModal isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} />
     </div>
   );
 }

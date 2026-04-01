@@ -1,0 +1,224 @@
+import { useState, useRef, useEffect } from 'react';
+
+export default function CreatePostModal({ isOpen, onClose }) {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    text: '',
+    type: 'Prière', // Default
+    target: 'Public', // Default
+    tags: []
+  });
+  const [customTag, setCustomTag] = useState('');
+
+  const predefinedTags = ['#santé', '#famille', '#finances', '#examen', '#paix', '#gratitude'];
+  const displayTags = Array.from(new Set([...predefinedTags, ...formData.tags]));
+
+  const handleAddCustomTag = () => {
+    let tag = customTag.trim();
+    if (!tag) return;
+    if (!tag.startsWith('#')) tag = '#' + tag;
+    
+    if (!formData.tags.includes(tag)) {
+      updateForm('tags', [...formData.tags, tag]);
+    }
+    setCustomTag('');
+  };
+
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen && step === 3) {
+      setTimeout(() => {
+        if (textareaRef.current) {
+          textareaRef.current.focus();
+        }
+      }, 400); // Wait for modal slide animation
+    }
+  }, [isOpen, step]);
+
+  if (!isOpen) return null;
+
+  const nextStep = () => setStep((prev) => Math.min(prev + 1, 5));
+  const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
+
+  const handleClose = () => {
+    onClose();
+    // Reset state after animation finishes
+    setTimeout(() => {
+      setStep(1);
+      setFormData({ text: '', type: 'Prière', target: 'Public', tags: [] });
+    }, 400);
+  };
+
+  const handlePublish = () => {
+    // console.log("Publishing", formData);
+    handleClose();
+  };
+
+  const updateForm = (key, value) => setFormData({ ...formData, [key]: value });
+
+  return (
+    <div className="create-post-overlay">
+      <div className="create-post-modal">
+        {/* Header */}
+        <div className="create-header">
+          {step > 1 ? (
+            <button className="icon-btn" onClick={prevStep}>←</button>
+          ) : (
+             <button className="icon-btn" style={{visibility: 'hidden'}}>←</button>
+          )}
+          <div className="step-indicator">
+            <span className="step-dots">
+              {[1, 2, 3, 4, 5].map(s => (
+                <span key={s} className={`dot ${s === step ? 'active' : ''}`}></span>
+              ))}
+            </span>
+          </div>
+          <button className="icon-btn" onClick={handleClose}>✕</button>
+        </div>
+
+        {/* Content Wrapper for Sliding */}
+        <div className="create-content-wrapper">
+          <div className="create-content-slider" style={{ transform: `translateX(-${(step - 1) * 20}%)` }}>
+            
+            {/* Step 1: Type */}
+            <div className="create-step">
+              <h2 className="step-title">Quel est le type de ce post ?</h2>
+              <p className="step-subtitle">Cela aide la communauté à mieux réagir.</p>
+              <div className="options-grid">
+                {['Prière', 'Témoignage', 'Annonce'].map((type) => (
+                  <button 
+                    key={type}
+                    className={`option-btn ${formData.type === type ? 'selected' : ''}`}
+                    onClick={() => { updateForm('type', type); setTimeout(nextStep, 200); }}
+                  >
+                    <span className="option-icon">
+                      {type === 'Prière' ? '🙏' : type === 'Témoignage' ? '💬' : '📢'}
+                    </span>
+                    {type}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Step 2: Target */}
+            <div className="create-step">
+              <h2 className="step-title">Qui peut voir ce post ?</h2>
+              <p className="step-subtitle">Choisis ton audience.</p>
+              <div className="options-grid">
+                {[
+                  { id: 'Public', icon: '🌍', label: 'Public', desc: 'Visible par tous les membres' },
+                  { id: 'Église', icon: '⛪', label: 'Mon église', desc: 'Membres de ton église locale' },
+                  { id: 'Groupe', icon: '👥', label: 'Groupe', desc: 'Un cercle plus restreint' }
+                ].map((tgt) => (
+                  <button 
+                    key={tgt.id}
+                    className={`option-btn option-btn-large ${formData.target === tgt.id ? 'selected' : ''}`}
+                    onClick={() => { updateForm('target', tgt.id); setTimeout(nextStep, 200); }}
+                  >
+                    <span className="option-icon">{tgt.icon}</span>
+                    <div className="option-text">
+                      <div className="option-label">{tgt.label}</div>
+                      <div className="option-desc">{tgt.desc}</div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Step 3: Write */}
+            <div className="create-step">
+              <h2 className="step-title">Créer un post</h2>
+              <textarea 
+                ref={textareaRef}
+                className="create-textarea" 
+                placeholder="Exprime ce que tu ressens..."
+                value={formData.text}
+                onChange={(e) => updateForm('text', e.target.value)}
+              />
+              <button 
+                className="btn-primary step-btn" 
+                disabled={!formData.text.trim()} 
+                onClick={nextStep}
+              >Suivant</button>
+            </div>
+
+            {/* Step 4: Options */}
+            <div className="create-step">
+              <h2 className="step-title">Options supplémentaires</h2>
+              <p className="step-subtitle">Ajoute des tags pour mieux référencer ton post.</p>
+              
+              <div className="custom-tag-wrapper">
+                <input 
+                  type="text" 
+                  className="custom-tag-input" 
+                  placeholder="Écrire un tag (ex: #espoir)"
+                  value={customTag}
+                  onChange={(e) => setCustomTag(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleAddCustomTag();
+                  }}
+                />
+                <button className="custom-tag-add" onClick={handleAddCustomTag}>+</button>
+              </div>
+
+              <div className="tags-container">
+                {displayTags.map((tag) => {
+                  const isSelected = formData.tags.includes(tag);
+                  return (
+                    <button 
+                      key={tag}
+                      className={`tag-btn ${isSelected ? 'selected' : ''}`}
+                      onClick={() => {
+                        const newTags = isSelected 
+                          ? formData.tags.filter(t => t !== tag)
+                          : [...formData.tags, tag];
+                        updateForm('tags', newTags);
+                      }}
+                    >
+                      {tag}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="spacer"></div>
+              <button className="btn-primary step-btn" onClick={nextStep}>Continuer</button>
+            </div>
+
+            {/* Step 5: Publish */}
+            <div className="create-step">
+              <h2 className="step-title">C'est prêt !</h2>
+              <p className="step-subtitle">Voici un aperçu de ton post.</p>
+              
+              <div className="post-preview">
+                <div className="preview-header">
+                  <div className="preview-badges">
+                    <span className={`badge ${formData.type.toLowerCase().replace('é', 'e')}`}>
+                       {formData.type === 'Prière' ? '🙏' : formData.type === 'Témoignage' ? '💬' : '📢'} {formData.type}
+                    </span>
+                    <span className="badge target">
+                      {formData.target === 'Public' ? '🌍' : formData.target === 'Église' ? '⛪' : '👥'} {formData.target}
+                    </span>
+                  </div>
+                </div>
+                <div className="preview-content">
+                  {formData.text}
+                </div>
+                {formData.tags.length > 0 && (
+                  <div className="preview-tags">
+                    {formData.tags.join(' ')}
+                  </div>
+                )}
+              </div>
+              <div className="spacer"></div>
+              <button className="btn-primary step-btn publish-btn" onClick={handlePublish}>
+                Publier
+              </button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
