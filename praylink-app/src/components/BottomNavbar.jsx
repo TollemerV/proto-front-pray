@@ -15,7 +15,7 @@ const Icons = {
 };
 
 const navItems = [
-  { path: '/', iconOutline: Icons.HomeOutline, iconSolid: Icons.HomeSolid, label: 'Accueil' },
+  { path: '/feed', iconOutline: Icons.HomeOutline, iconSolid: Icons.HomeSolid, label: 'Accueil' },
   { path: '/notifications', iconOutline: Icons.BellOutline, iconSolid: Icons.BellSolid, label: 'Activité', hasNotif: true },
   { path: null, label: 'Créer', isCreate: true },
   { path: '/communities', iconOutline: Icons.GroupOutline, iconSolid: Icons.GroupSolid, label: 'Groupes' },
