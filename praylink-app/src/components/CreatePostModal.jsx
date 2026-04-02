@@ -1,5 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
 
+const Icons = {
+  Prière: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>,
+  Témoignage: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>,
+  Annonce: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>,
+  Public: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>,
+  Église: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v6"></path><path d="M10 5h4"></path><path d="M12 8l-8 6h3v8h4v-5h2v5h4v-8h3l-8-6z"></path></svg>,
+  Groupe: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+};
+
 export default function CreatePostModal({ isOpen, onClose }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -92,8 +101,8 @@ export default function CreatePostModal({ isOpen, onClose }) {
                     className={`option-btn ${formData.type === type ? 'selected' : ''}`}
                     onClick={() => { updateForm('type', type); setTimeout(nextStep, 200); }}
                   >
-                    <span className="option-icon">
-                      {type === 'Prière' ? '🙏' : type === 'Témoignage' ? '💬' : '📢'}
+                    <span className="option-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      {Icons[type]}
                     </span>
                     {type}
                   </button>
@@ -107,16 +116,18 @@ export default function CreatePostModal({ isOpen, onClose }) {
               <p className="step-subtitle">Choisis ton audience.</p>
               <div className="options-grid">
                 {[
-                  { id: 'Public', icon: '🌍', label: 'Public', desc: 'Visible par tous les membres' },
-                  { id: 'Église', icon: '⛪', label: 'Mon église', desc: 'Membres de ton église locale' },
-                  { id: 'Groupe', icon: '👥', label: 'Groupe', desc: 'Un cercle plus restreint' }
+                  { id: 'Public', label: 'Public', desc: 'Visible par tous les membres' },
+                  { id: 'Église', label: 'Mon église', desc: 'Membres de ton église locale' },
+                  { id: 'Groupe', label: 'Groupe', desc: 'Un cercle plus restreint' }
                 ].map((tgt) => (
                   <button 
                     key={tgt.id}
                     className={`option-btn option-btn-large ${formData.target === tgt.id ? 'selected' : ''}`}
                     onClick={() => { updateForm('target', tgt.id); setTimeout(nextStep, 200); }}
                   >
-                    <span className="option-icon">{tgt.icon}</span>
+                    <span className="option-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      {Icons[tgt.id]}
+                    </span>
                     <div className="option-text">
                       <div className="option-label">{tgt.label}</div>
                       <div className="option-desc">{tgt.desc}</div>
@@ -193,11 +204,11 @@ export default function CreatePostModal({ isOpen, onClose }) {
               <div className="post-preview">
                 <div className="preview-header">
                   <div className="preview-badges">
-                    <span className={`badge ${formData.type.toLowerCase().replace('é', 'e')}`}>
-                       {formData.type === 'Prière' ? '🙏' : formData.type === 'Témoignage' ? '💬' : '📢'} {formData.type}
+                    <span className={`badge ${formData.type.toLowerCase().replace('é', 'e')}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                      <span style={{ display: 'flex', width: '16px', height: '16px' }}>{Icons[formData.type]}</span> {formData.type}
                     </span>
-                    <span className="badge target">
-                      {formData.target === 'Public' ? '🌍' : formData.target === 'Église' ? '⛪' : '👥'} {formData.target}
+                    <span className="badge target" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                      <span style={{ display: 'flex', width: '16px', height: '16px' }}>{Icons[formData.target]}</span> {formData.target}
                     </span>
                   </div>
                 </div>

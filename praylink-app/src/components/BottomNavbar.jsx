@@ -10,13 +10,15 @@ const Icons = {
   ChurchSolid: () => <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2v6 M10 5h4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/><path d="M12 8l-8 6h3v8h10v-8h3l-8-6z" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/></svg>,
   ProfileOutline: () => <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>,
   ProfileSolid: () => <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2z"></path><circle cx="12" cy="7" r="4"></circle></svg>,
+  GroupOutline: () => <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+  GroupSolid: () => <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2z"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
 };
 
 const navItems = [
   { path: '/', iconOutline: Icons.HomeOutline, iconSolid: Icons.HomeSolid, label: 'Accueil' },
   { path: '/notifications', iconOutline: Icons.BellOutline, iconSolid: Icons.BellSolid, label: 'Activité', hasNotif: true },
   { path: null, label: 'Créer', isCreate: true },
-  { path: '/communities', iconOutline: Icons.ChurchOutline, iconSolid: Icons.ChurchSolid, label: 'Église' },
+  { path: '/communities', iconOutline: Icons.GroupOutline, iconSolid: Icons.GroupSolid, label: 'Groupes' },
   { path: '/profile', iconOutline: Icons.ProfileOutline, iconSolid: Icons.ProfileSolid, label: 'Profil' },
 ];
 
@@ -41,7 +43,7 @@ export default function BottomNavbar({ onOpenCreate }) {
           );
         }
 
-        const isActive = location.pathname === item.path;
+        const isActive = location.pathname === item.path || (item.path === '/communities' && location.pathname.startsWith('/community/'));
 
         return (
           <button

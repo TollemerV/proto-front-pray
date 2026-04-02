@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import BottomNavbar from './components/BottomNavbar';
 import Feed from './pages/Feed';
 import Notifications from './pages/Notifications';
-import Communities from './pages/Communities';
+import CommunitiesList from './pages/CommunitiesList';
+import CommunityDetail from './pages/CommunityDetail';
 import Profile from './pages/Profile';
 import PrayerThread from './pages/PrayerThread';
 import CreatePostModal from './components/CreatePostModal';
@@ -38,7 +39,8 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Feed />} />
           <Route path="/notifications" element={<Notifications />} />
-          <Route path="/communities" element={<Communities />} />
+          <Route path="/communities" element={<CommunitiesList />} />
+          <Route path="/community/:id" element={<CommunityDetail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/prayer/:id" element={<PrayerThread />} />
         </Routes>
