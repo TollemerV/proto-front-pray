@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import BottomNavbar from './components/BottomNavbar';
+import Onboarding from './pages/Onboarding';
 import Gateway from './pages/Gateway';
 import Feed from './pages/Feed';
 import Notifications from './pages/Notifications';
@@ -25,10 +26,11 @@ import './styles/Navbar.css';
 import './styles/Profile.css';
 import './styles/PrayerThread.css';
 import './styles/CreatePost.css';
+import './styles/Onboarding.css';
 
 function AppContent() {
   const location = useLocation();
-  const hideBottomNav = location.pathname.startsWith('/prayer') || location.pathname.startsWith('/church') || location.pathname === '/';
+  const hideBottomNav = location.pathname.startsWith('/prayer') || location.pathname.startsWith('/church') || location.pathname === '/' || location.pathname === '/onboarding' || location.pathname === '/gateway';
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   return (
@@ -46,6 +48,7 @@ function AppContent() {
       <div className="screen-container">
         <Routes>
           <Route path="/" element={<Gateway />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/communities" element={<CommunitiesList />} />

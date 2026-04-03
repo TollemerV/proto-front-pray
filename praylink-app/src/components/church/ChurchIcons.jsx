@@ -36,11 +36,9 @@ export const Icons = {
     </IconBase>
   ),
   Prayer: (props) => (
-    <IconBase {...props}>
-      <path d="M12 2a3 3 0 0 1 3 3v2" />
-      <path d="M9 7V5a3 3 0 0 1 3-3" />
-      <path d="M12 22a7 7 0 0 0 7-7V9a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v6a7 7 0 0 0 7 7Z" />
-      <path d="M12 8v4" />
+    <IconBase {...props} strokeWidth={props.strokeWidth || 1.8}>
+      <path d="M12 2L7 20h10L12 2z" />
+      <path d="M12 2v18" />
     </IconBase>
   ),
   Message: (props) => (

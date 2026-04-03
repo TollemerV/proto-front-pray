@@ -439,26 +439,32 @@
   font-weight: 500;
 }
 
-.pray-small-btn {
+.pray-modern-btn {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 7px 16px;
-  border-radius: 20px;
-  background: var(--accent-pray-light);
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-primary);
   border: none;
-  color: var(--accent-pray);
-  font-size: 13px;
-  font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
-  font-family: 'Inter', sans-serif;
 }
 
-.pray-small-btn:hover {
-  background: var(--accent-pray);
-  color: white;
-  transform: scale(1.04);
+.pray-modern-btn:hover {
+  background: var(--accent-pray-light);
+  transform: scale(1.1);
+}
+
+.pray-modern-btn.active {
+  background: var(--accent-pray-light);
+}
+
+.prayer-count-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* Members List (Refonte) */

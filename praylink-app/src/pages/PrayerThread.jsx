@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AppIcons } from '../components/Icons';
 import '../styles/PrayerThread.css';
 
 export default function PrayerThread() {
   const navigate = useNavigate();
   const [prayed, setPrayed] = useState(false);
+  const [prayAnimate, setPrayAnimate] = useState(false);
 
   const handlePray = () => {
-    setPrayed(true);
+    setPrayed(!prayed);
+    if (!prayed) {
+      setPrayAnimate(true);
+      setTimeout(() => setPrayAnimate(false), 400);
+    }
   };
 
   return (
@@ -15,7 +21,7 @@ export default function PrayerThread() {
       {/* Header */}
       <div className="thread-header">
         <button className="thread-back-btn" onClick={() => navigate(-1)}>
-          <span className="icon">←</span>
+          <AppIcons.ArrowLeft size={20} stroke="var(--text-primary)" />
           <span>Retour</span>
         </button>
         <span className="thread-header-title">Requête de prière</span>
@@ -41,9 +47,11 @@ export default function PrayerThread() {
         <div className="timeline-container">
           
           <div className="timeline-item system-event">
-            <div className="timeline-dot system"></div>
+            <div className="timeline-dot system">
+              <AppIcons.Prayer size={14} stroke="var(--accent-pray)" />
+            </div>
             <div className="timeline-content">
-              <span className="system-text">🙏 45 personnes ont rejoint la prière</span>
+              <span className="system-text">45 personnes ont rejoint la prière</span>
             </div>
           </div>
 
@@ -56,9 +64,11 @@ export default function PrayerThread() {
           </div>
 
           <div className="timeline-item system-event">
-            <div className="timeline-dot system"></div>
+            <div className="timeline-dot system">
+               <AppIcons.Prayer size={14} stroke="var(--accent-pray)" />
+            </div>
             <div className="timeline-content">
-              <span className="system-text">🔥 127 personnes prient maintenant</span>
+              <span className="system-text">127 personnes prient maintenant</span>
             </div>
           </div>
 
@@ -71,7 +81,9 @@ export default function PrayerThread() {
           </div>
 
           <div className="timeline-item final-status">
-            <div className="timeline-dot final"></div>
+            <div className="timeline-dot final">
+              <AppIcons.Check size={16} stroke="white" />
+            </div>
             <div className="timeline-content">
               <div className="final-status-badge">
                 🟢 Prière exaucée
@@ -87,13 +99,30 @@ export default function PrayerThread() {
 
       {/* Sticky Actions Footer */}
       <div className="thread-sticky-footer">
-        <button 
-          className={`sticky-btn primary ${prayed ? 'prayed' : ''}`}
-          onClick={handlePray}
-        >
-          {prayed ? '✓ Prié' : '🙏 Je prie'}
+        <div className="footer-actions-left">
+          <button 
+            className={`footer-btn ${prayed ? 'active' : ''}`}
+            onClick={handlePray}
+            title="Prier"
+          >
+            <AppIcons.Prayer 
+              size={26} 
+              stroke={prayed ? "var(--accent-pray)" : "var(--text-primary)"}
+              fill={prayed ? "var(--accent-pray)" : "none"}
+              className={prayAnimate ? 'pray-animate' : ''}
+            />
+          </button>
+          <button className="footer-btn" title="Message">
+            <AppIcons.Comment size={26} stroke="var(--text-primary)" />
+          </button>
+          <button className="footer-btn" title="Partager">
+            <AppIcons.Share size={26} stroke="var(--text-primary)" />
+          </button>
+        </div>
+        
+        <button className="footer-btn bookmark-btn" title="Enregistrer">
+          <AppIcons.Bookmark size={26} stroke="var(--text-primary)" />
         </button>
-        <button className="sticky-btn secondary">💬 Message</button>
       </div>
     </div>
   );

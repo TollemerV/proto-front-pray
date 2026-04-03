@@ -345,72 +345,75 @@
   color: var(--accent-pray);
 }
 
-/* Post Actions */
-.post-actions {
+/* ── Post Actions v2 — flat Instagram-style ── */
+.post-actions-v2 {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding-top: 12px;
+  justify-content: space-between;
+  padding: 10px 2px 0;
   border-top: 1px solid var(--border-light);
+  margin-top: 4px;
 }
 
-.post-action-btn {
+.post-actions-v2-left {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: var(--radius-lg);
+  gap: 2px;
+}
+
+/* Base button */
+.pav2-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 9px;
+  border-radius: 10px;
   border: none;
   background: transparent;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-secondary);
   cursor: pointer;
-  transition: var(--transition);
-  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  transition: background 0.18s ease, transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.post-action-btn:hover {
+.pav2-btn:hover {
   background: var(--bg-primary);
 }
 
-.post-action-btn .action-icon {
-  font-size: 18px;
-  transition: var(--transition);
+.pav2-btn:active {
+  transform: scale(0.92);
 }
 
-.post-action-btn.pray-btn:hover,
-.post-action-btn.pray-btn.active {
-  background: var(--accent-pray-light);
+/* Count label */
+.pav2-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.pav2-count-active {
   color: var(--accent-pray);
 }
 
-.post-action-btn.pray-btn.active .action-icon {
-  transform: scale(1.2);
+/* Active states */
+.pav2-pray-active   { color: var(--accent-pray); }
+.pav2-repost-active { color: var(--accent-green); }
+.pav2-bookmark-active { color: var(--accent-blue); }
+
+/* Pray animation */
+.pray-animate {
+  animation: prayPop 0.38s cubic-bezier(0.17, 0.89, 0.32, 1.49);
 }
 
-.post-action-btn.comment-btn:hover {
-  background: var(--accent-blue-light);
-  color: var(--accent-blue);
+@keyframes prayPop {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.45) rotate(-6deg); }
+  70%  { transform: scale(1.2) rotate(4deg); }
+  100% { transform: scale(1.1); }
 }
 
-.post-action-btn.like-btn:hover,
-.post-action-btn.like-btn.active {
-  background: var(--accent-red-light);
-  color: var(--accent-red);
-}
-
-.post-action-btn.like-btn.active .action-icon {
-  transform: scale(1.2);
-}
-
-.action-spacer {
-  flex: 1;
-}
-
-.post-action-btn.share-btn {
-  padding: 8px;
-}
 
 /* Placeholder Screen */
 .placeholder-screen {

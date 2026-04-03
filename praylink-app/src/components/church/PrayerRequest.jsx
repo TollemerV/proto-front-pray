@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AppIcons } from '../Icons';
 
 export default function PrayerRequest({ avatar, avatarBg, name, time, text, count, status = 'en_cours' }) {
   const [prayed, setPrayed] = useState(false);
   const [prayerCount, setPrayerCount] = useState(count);
+  const [prayAnimate, setPrayAnimate] = useState(false);
   const navigate = useNavigate();
 
   const handlePray = () => {
     if (!prayed) {
       setPrayed(true);
       setPrayerCount(prayerCount + 1);
+      setPrayAnimate(true);
+      setTimeout(() => setPrayAnimate(false), 400);
+    } else {
+      setPrayed(false);
+      setPrayerCount(prayerCount - 1);
     }
   };
 
@@ -31,17 +38,25 @@ export default function PrayerRequest({ avatar, avatarBg, name, time, text, coun
       
       <div className="prayer-request-actions-row">
         <button className="prayer-evolution-btn" onClick={() => navigate('/prayer/1')}>
-          Voir l'évolution <span className="arrow-right">→</span>
+          Voir l'évolution <AppIcons.More size={16} style={{ transform: 'rotate(90deg)' }} />
         </button>
       </div>
 
       <div className="prayer-request-footer">
-        <span className="prayer-count">🙏 {prayerCount} personnes prient avec toi</span>
+        <div className="prayer-count-group">
+          <AppIcons.Prayer size={18} stroke="var(--accent-pray)" fill="rgba(123, 104, 238, 0.1)" />
+          <span className="prayer-count">{prayerCount} personnes prient</span>
+        </div>
         <button
-          className={`pray-small-btn ${prayed ? 'prayed' : ''}`}
+          className={`pray-modern-btn ${prayed ? 'active' : ''}`}
           onClick={handlePray}
         >
-          {prayed ? '✓ Prié' : '🙏 Soutenir'}
+          <AppIcons.Prayer 
+            size={22} 
+            stroke={prayed ? "var(--accent-pray)" : "var(--text-secondary)"}
+            fill={prayed ? "var(--accent-pray)" : "none"}
+            className={prayAnimate ? 'pray-animate' : ''}
+          />
         </button>
       </div>
     </div>
