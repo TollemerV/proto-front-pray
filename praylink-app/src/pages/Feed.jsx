@@ -1,7 +1,8 @@
 import AppHeader from '../components/AppHeader';
 import StoryRow from '../components/StoryRow';
-import VerseCard from '../components/VerseCard';
 import PostCard from '../components/PostCard';
+import ChurchBanner from '../components/ChurchBanner';
+
 
 const posts = [
   {
@@ -45,7 +46,7 @@ export default function Feed() {
     <>
       <AppHeader />
       <StoryRow />
-      <VerseCard />
+      <ChurchBanner />
       <div className="feed-container">
         {posts.map((post, i) => (
           <PostCard key={i} {...post} />
