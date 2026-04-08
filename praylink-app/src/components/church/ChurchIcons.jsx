@@ -3,9 +3,10 @@ import React from 'react';
 /**
  * Consistent SVG Icons for the Church Administration section.
  * Style: strokeWidth 2.2, round caps, 24x24 viewBox.
+ * Includes outline + solid pairs for bottom nav active/inactive states.
  */
 
-const IconBase = ({ children, size = 24, stroke = "currentColor", fill = "none" }) => (
+const IconBase = ({ children, size = 24, stroke = "currentColor", fill = "none", style }) => (
   <svg
     width={size}
     height={size}
@@ -15,6 +16,7 @@ const IconBase = ({ children, size = 24, stroke = "currentColor", fill = "none" 
     strokeWidth="2.2"
     strokeLinecap="round"
     strokeLinejoin="round"
+    style={style}
   >
     {children}
   </svg>
@@ -35,10 +37,20 @@ export const Icons = {
       <line x1="3" y1="10" x2="21" y2="10" />
     </IconBase>
   ),
+  CalendarSolid: (props) => (
+    <IconBase {...props} fill="currentColor" stroke="currentColor" strokeWidth="0">
+      <path d="M16 2a1 1 0 0 1 1 1v1h2a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h2V3a1 1 0 1 1 2 0v1h6V3a1 1 0 0 1 1-1zM4 10v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V10H4z" />
+    </IconBase>
+  ),
   Prayer: (props) => (
     <IconBase {...props} strokeWidth={props.strokeWidth || 1.8}>
       <path d="M12 2L7 20h10L12 2z" />
       <path d="M12 2v18" />
+    </IconBase>
+  ),
+  PrayerSolid: (props) => (
+    <IconBase {...props} fill="currentColor" stroke="currentColor" strokeWidth="0.5">
+      <path d="M12 2L7 20h10L12 2z" />
     </IconBase>
   ),
   Message: (props) => (
@@ -56,6 +68,13 @@ export const Icons = {
   ),
   Wallet: (props) => (
     <IconBase {...props}>
+      <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4" />
+      <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
+      <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z" />
+    </IconBase>
+  ),
+  WalletSolid: (props) => (
+    <IconBase {...props} fill="currentColor" stroke="currentColor" strokeWidth="0.5">
       <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4" />
       <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
       <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z" />
@@ -133,5 +152,41 @@ export const Icons = {
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
       <polyline points="9 22 9 12 15 12 15 22" />
     </IconBase>
-  )
+  ),
+  HomeSolid: (props) => (
+    <IconBase {...props} fill="currentColor" stroke="currentColor" strokeWidth="0.5">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+    </IconBase>
+  ),
+  Settings: (props) => (
+    <IconBase {...props}>
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    </IconBase>
+  ),
+  SettingsSolid: (props) => (
+    <IconBase {...props} fill="currentColor" stroke="currentColor" strokeWidth="0.5">
+      <circle cx="12" cy="12" r="3" fill="white" stroke="white" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    </IconBase>
+  ),
+  Grid: (props) => (
+    <IconBase {...props}>
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+    </IconBase>
+  ),
+  Heart: (props) => (
+    <IconBase {...props}>
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    </IconBase>
+  ),
+  Send: (props) => (
+    <IconBase {...props}>
+      <line x1="22" y1="2" x2="11" y2="13" />
+      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+    </IconBase>
+  ),
 };

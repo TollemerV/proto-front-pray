@@ -12,10 +12,42 @@ const tabs = [
 ];
 
 const events = [
-  { month: 'AVR', day: '02', title: 'Soirée de louange & adoration', time: '🕐 19h30 — Salle principale' },
-  { month: 'AVR', day: '06', title: 'Culte de Pâques', time: '🕐 10h00 — Église Béthel' },
-  { month: 'AVR', day: '10', title: 'Groupe de jeunes — Bible study', time: '🕐 18h00 — Salle annexe' },
-  { month: 'AVR', day: '15', title: 'Maraude solidaire', time: '🕐 14h00 — Place de la République' },
+  {
+    month: 'AVR', day: '02',
+    title: 'Soirée de louange & adoration',
+    time: '19h30',
+    location: 'Salle principale — Église Béthel',
+    description: 'Une soirée de louange et d\'adoration pour célébrer la présence de Dieu ensemble. Programme : louange contemporaine, temps de prière, témoignages.',
+    audience: 'public',
+    organizer: 'Pasteur Emmanuel',
+  },
+  {
+    month: 'AVR', day: '06',
+    title: 'Culte de Pâques',
+    time: '10h00',
+    location: 'Église Béthel — Grande salle',
+    description: 'Le culte de résurrection le plus attendu de l\'année. Toute la famille est invitée. Accueil des enfants dès 9h45.',
+    audience: 'public',
+    organizer: 'Équipe pastorale',
+  },
+  {
+    month: 'AVR', day: '10',
+    title: 'Groupe de jeunes — Bible study',
+    time: '18h00',
+    location: 'Salle annexe — 1er étage',
+    description: 'Étude biblique pour les 15-25 ans. Ce mois-ci : les paraboles de Jésus.',
+    audience: 'membres',
+    organizer: 'Responsable Jeunesse',
+  },
+  {
+    month: 'AVR', day: '15',
+    title: 'Maraude solidaire',
+    time: '14h00',
+    location: 'Place de la République — Paris',
+    description: 'Distribution de repas et rencontre avec les personnes sans-abri. Venez avec votre cœur et vos bras !',
+    audience: 'public',
+    organizer: 'Équipe diaconie',
+  },
 ];
 
 const prayers = [

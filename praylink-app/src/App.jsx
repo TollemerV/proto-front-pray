@@ -8,12 +8,7 @@ import Notifications from './pages/Notifications';
 import CommunitiesList from './pages/CommunitiesList';
 import CommunityDetail from './pages/CommunityDetail';
 import ChurchDashboard from './pages/church/ChurchDashboard';
-import ChurchMembers from './pages/church/ChurchMembers';
-import ChurchEvents from './pages/church/ChurchEvents';
-import ChurchAnnouncements from './pages/church/ChurchAnnouncements';
-import ChurchPrayers from './pages/church/ChurchPrayers';
-import ChurchNotifications from './pages/church/ChurchNotifications';
-import ChurchDonations from './pages/church/ChurchDonations';
+
 import Profile from './pages/Profile';
 import PrayerThread from './pages/PrayerThread';
 import CreatePostModal from './components/CreatePostModal';
@@ -45,7 +40,7 @@ function AppContent() {
       </div>
 
       {/* Screen Content */}
-      <div className="screen-container">
+      <div className={`screen-container${hideBottomNav ? ' screen-no-nav' : ''}`}>
         <Routes>
           <Route path="/" element={<Gateway />} />
           <Route path="/onboarding" element={<Onboarding />} />
@@ -54,12 +49,7 @@ function AppContent() {
           <Route path="/communities" element={<CommunitiesList />} />
           <Route path="/community/:id" element={<CommunityDetail />} />
           <Route path="/church" element={<ChurchDashboard />} />
-          <Route path="/church/members" element={<ChurchMembers />} />
-          <Route path="/church/events" element={<ChurchEvents />} />
-          <Route path="/church/announcements" element={<ChurchAnnouncements />} />
-          <Route path="/church/prayers" element={<ChurchPrayers />} />
-          <Route path="/church/notifications" element={<ChurchNotifications />} />
-          <Route path="/church/donations" element={<ChurchDonations />} />
+
           <Route path="/profile" element={<Profile />} />
           <Route path="/prayer/:id" element={<PrayerThread />} />
         </Routes>

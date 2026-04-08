@@ -1,62 +1,61 @@
-import { useNavigate } from 'react-router-dom';
 import { Icons } from '../../components/church/ChurchIcons';
 
 export default function ChurchDonations() {
-  const navigate = useNavigate();
 
   const history = [
-    { name: 'Anonyme', date: 'Aujourd\'hui', amount: '50 €', color: 'var(--accent-blue-light)' },
+    { name: 'Anonyme', date: "Aujourd'hui", amount: '50 €', color: 'var(--accent-blue-light)' },
     { name: 'Thomas Bernard', date: 'Hier', amount: '120 €', color: 'var(--accent-gold-light)' },
     { name: 'Famille L.', date: 'Le 04 Avril', amount: '500 €', color: 'var(--accent-pray-light)' }
   ];
 
   return (
-    <div className="church-page-container">
-      
-      <div className="church-page-header">
-        <button onClick={() => navigate('/church')} className="church-back-btn">
-          <Icons.ArrowLeft size={20} />
-        </button>
-        <div className="church-page-title-group">
-          <h1 className="church-page-title">Dons (Avril)</h1>
-          <p className="church-page-subtitle">Suivi de la générosité</p>
+    <div className="ch-tab-page">
+      <div className="ch-tab-header">
+        <h1 className="ch-tab-title">Dons</h1>
+        <p className="ch-tab-subtitle">Suivi de la générosité · Avril</p>
+      </div>
+
+      {/* Hero Donation Card */}
+      <div className="ch-donation-hero">
+        <div className="ch-donation-hero-bg">
+          <Icons.Wallet size={100} stroke="rgba(255,255,255,0.08)" />
+        </div>
+        <div className="ch-donation-hero-label">Total récolté</div>
+        <div className="ch-donation-hero-amount">3 450 €</div>
+        <div className="ch-donation-hero-bar">
+          <div className="ch-donation-bar-bg">
+            <div className="ch-donation-bar-fill" style={{ width: '85%' }} />
+          </div>
+          <div className="ch-donation-bar-info">
+            <span>85% de l'objectif</span>
+            <span>4 050 €</span>
+          </div>
+        </div>
+        <div className="ch-donation-hero-badge">
+          <Icons.Activity size={14} style={{marginRight: 4}} />
+          +12% vs mars
         </div>
       </div>
 
-      <div style={{ background: 'linear-gradient(135deg, var(--accent-gold), #B8860B)', color: 'white', padding: '32px 24px', borderRadius: '24px', boxShadow: 'var(--shadow-lg)', marginBottom: '32px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '-10px', right: '-10px', opacity: 0.1 }}>
-          <Icons.Wallet size={120} />
-        </div>
-        <div style={{ fontSize: '14px', marginBottom: '8px', opacity: 0.9, fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>Total récolté</div>
-        <div style={{ fontSize: '48px', fontWeight: '800', letterSpacing: '-1px' }}>3 450 €</div>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 16px', backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: '20px', marginTop: '16px', fontSize: '13px', fontWeight: '800' }}>
-           <Icons.Check size={14} />
-           85% de l'objectif
-        </div>
-      </div>
-
-      <h2 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '16px', color: 'var(--text-primary)' }}>Derniers dons</h2>
-      
-      <div className="church-list">
+      {/* Donation History */}
+      <h2 className="ch-section-title" style={{marginTop: 24}}>Derniers dons</h2>
+      <div className="ch-donation-list">
         {history.map((h, i) => (
-          <div key={i} className="church-item-card" style={{ justifyContent: 'space-between' }}>
-             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-               <div className="church-icon-wrapper" style={{ backgroundColor: h.color }}>
-                 <Icons.Wallet stroke={h.color.replace('-light', '')} />
-               </div>
-               <div>
-                 <div className="church-item-title" style={{ marginBottom: '2px' }}>{h.name}</div>
-                 <div className="church-item-info">
-                   <Icons.Calendar size={12} />
-                   {h.date}
-                 </div>
-               </div>
-             </div>
-             <div style={{ fontWeight: '800', fontSize: '17px', color: 'var(--accent-green)' }}>+{h.amount}</div>
+          <div key={i} className="ch-donation-item">
+            <div className="ch-donation-item-icon" style={{ backgroundColor: h.color }}>
+              <Icons.Wallet size={18} stroke="var(--accent-gold)" />
+            </div>
+            <div className="ch-donation-item-info">
+              <div className="ch-donation-item-name">{h.name}</div>
+              <div className="ch-donation-item-date">
+                <Icons.Calendar size={12} stroke="var(--text-tertiary)" style={{marginRight: 4}} />
+                {h.date}
+              </div>
+            </div>
+            <div className="ch-donation-item-amount">+{h.amount}</div>
           </div>
         ))}
       </div>
-      
     </div>
   );
 }
