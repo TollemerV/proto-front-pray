@@ -31,13 +31,11 @@ export default function ChurchHome({ onNavigate }) {
 
   // Actions: tab-based navigate OR panel toggle
   const quickActions = [
-    { icon: <Icons.Announce size={22} />, label: 'Annonce',    color: '#7B68EE', bg: 'rgba(123,104,238,0.12)', panel: 'announcements' },
     { icon: <Icons.Calendar size={22} />, label: 'Événement',  color: '#6B9FD4', bg: 'rgba(107,159,212,0.12)', tab: 'events' },
     { icon: <Icons.Prayer size={22} />,  label: 'Prières',    color: '#7B68EE', bg: 'rgba(123,104,238,0.12)', tab: 'prayers' },
-    { icon: <Icons.Send size={22} />,    label: 'Message',    color: '#6B9FD4', bg: 'rgba(107,159,212,0.12)', panel: 'message' },
     { icon: <Icons.Wallet size={22} />,  label: 'Dons',       color: '#D4A94B', bg: 'rgba(212,169,75,0.12)',  tab: 'donations' },
     { icon: <Icons.Bell size={22} />,    label: 'Notif Push', color: '#7B68EE', bg: 'rgba(123,104,238,0.12)', panel: 'notifications' },
-    { icon: <Icons.Users size={22} />,   label: 'Membres',    color: '#4ECDC4', bg: 'rgba(78,205,196,0.12)',  panel: 'members' },
+    { icon: <Icons.Users size={22} />,   label: 'Membres',    color: '#4ECDC4', bg: 'rgba(78,205,196,0.12)',  tab: 'members' },
     { icon: <Icons.Globe size={22} />,   label: 'Notre page', color: '#6B7280', bg: 'rgba(107,114,128,0.12)', tab: 'profile' },
   ];
 
