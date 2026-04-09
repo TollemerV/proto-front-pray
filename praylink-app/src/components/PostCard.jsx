@@ -20,6 +20,7 @@ export default function PostCard({
   comments = 0,
   likes = 0,
   prayLabel,
+  onShare,
 }) {
   const [prayed,      setPrayed]      = useState(false);
   const [reposted,    setReposted]    = useState(false);
@@ -134,7 +135,7 @@ export default function PostCard({
           </button>
 
           {/* Partager */}
-          <button className="pav2-btn" title="Partager">
+          <button className="pav2-btn" title="Partager" onClick={onShare}>
             <AppIcons.Share size={22} stroke="var(--text-primary)" />
           </button>
         </div>

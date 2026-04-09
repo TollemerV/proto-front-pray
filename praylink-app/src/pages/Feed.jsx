@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import AppHeader from '../components/AppHeader';
 import StoryRow from '../components/StoryRow';
 import PostCard from '../components/PostCard';
 import ChurchBanner from '../components/ChurchBanner';
-
+import ShareSheet from '../components/ShareSheet';
 
 const posts = [
   {
@@ -42,17 +43,33 @@ const posts = [
 ];
 
 export default function Feed() {
+  const [sharingPost, setSharingPost] = useState(null);
+
   return (
-    <>
-      <AppHeader />
-      <StoryRow />
-      <ChurchBanner />
-      <div className="feed-container">
-        {posts.map((post, i) => (
-          <PostCard key={i} {...post} />
-        ))}
-        <div style={{ height: 20 }}></div>
+    <div className="feed-frame">
+      <div className="feed-scroll-area">
+        <AppHeader />
+        <StoryRow />
+        <ChurchBanner />
+        <div className="feed-container">
+          {posts.map((post, i) => (
+            <PostCard
+              key={i}
+              {...post}
+              onShare={() => setSharingPost(post)}
+            />
+          ))}
+          <div style={{ height: 20 }} />
+        </div>
       </div>
-    </>
+
+      {/* Share sheet — positioned absolute to feed-frame = stays in phone */}
+      {sharingPost && (
+        <ShareSheet
+          post={sharingPost}
+          onClose={() => setSharingPost(null)}
+        />
+      )}
+    </div>
   );
 }

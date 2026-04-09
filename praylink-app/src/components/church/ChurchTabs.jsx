@@ -74,7 +74,7 @@ const prayers = [
   },
 ];
 
-export default function ChurchTabs() {
+export default function ChurchTabs({ onSharePost }) {
   const [activeTab, setActiveTab] = useState('wall');
 
   return (
@@ -110,6 +110,7 @@ export default function ChurchTabs() {
             prayLabel="Amen"
             comments={34}
             likes={198}
+            onShare={() => onSharePost?.({ avatar: '⛪', username: 'Église Béthel', content: '🎶 Quel culte extraordinaire ce dimanche ! Merci à tous les bénévoles et au groupe de louange. Revivez les moments forts en story ! #culte #louange' })}
           />
           <PostCard
             avatar="👨🏿"
@@ -121,6 +122,7 @@ export default function ChurchTabs() {
             prayLabel="Soutenir"
             comments={18}
             likes={76}
+            onShare={() => onSharePost?.({ avatar: '👨🏿', username: 'Pasteur Emmanuel', content: 'Chers bien-aimés, n\'oubliez pas notre soirée de prière ce mercredi à 19h30. Venez avec un cœur ouvert, Dieu va faire de grandes choses ! 🔥' })}
           />
         </div>
       </div>

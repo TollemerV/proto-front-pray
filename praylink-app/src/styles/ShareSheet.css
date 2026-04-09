@@ -1,0 +1,246 @@
+/* =========================================
+   ShareSheet — Instagram-style bottom sheet
+   ========================================= */
+
+.share-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  animation: shareOverlayIn 0.2s ease-out;
+}
+
+@keyframes shareOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.share-sheet {
+  width: 100%;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  padding-bottom: 12px;
+  animation: shareSheetUp 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+@keyframes shareSheetUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* Handle */
+.share-handle {
+  width: 36px;
+  height: 4px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+/* Header */
+.share-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px 6px;
+}
+
+.share-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #111;
+}
+
+.share-close {
+  width: 28px;
+  height: 28px;
+  background: #f4f4f5;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Post preview */
+.share-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 18px 10px;
+  padding: 10px 12px;
+  background: #fafafa;
+  border-radius: 14px;
+  border: 1px solid #f0f0f0;
+}
+
+.share-preview-avatar {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.share-preview-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.share-preview-user {
+  font-size: 12px;
+  font-weight: 800;
+  color: #111827;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.share-preview-content {
+  font-size: 11px;
+  color: #6b7280;
+  line-height: 1.4;
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Section label */
+.share-section-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 0 18px;
+  margin: 6px 0 10px;
+}
+
+/* Contacts row */
+.share-contacts-row {
+  display: flex;
+  gap: 4px;
+  padding: 0 14px 14px;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.share-contacts-row::-webkit-scrollbar {
+  display: none;
+}
+
+.share-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 58px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 12px;
+  transition: background 0.15s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.share-contact:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+.share-contact-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  border: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  transition: all 0.2s ease;
+}
+
+.share-contact.sent .share-contact-avatar {
+  background: #7B68EE;
+  border-color: #7B68EE;
+  color: white;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.share-contact-name {
+  font-size: 10px;
+  font-weight: 700;
+  color: #374151;
+  white-space: nowrap;
+}
+
+/* Options grid */
+.share-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 0 14px 4px;
+}
+
+.share-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 14px;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.15s ease;
+}
+
+.share-option-btn:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+.share-option-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.share-option-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #374151;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ── Feed frame (positions the share sheet absolute) ── */
+.feed-frame {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
