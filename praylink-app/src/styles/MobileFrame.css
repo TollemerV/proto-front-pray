@@ -39,6 +39,11 @@
   scroll-behavior: smooth;
 }
 
+/* No global bottom nav (church section, prayer thread, etc.) */
+.screen-container.screen-no-nav {
+  height: calc(844px - 42px);
+}
+
 .screen-container::-webkit-scrollbar {
   display: none;
 }

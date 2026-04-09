@@ -1,9 +1,20 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import BottomNavbar from './components/BottomNavbar';
+import Onboarding from './pages/Onboarding';
+import Gateway from './pages/Gateway';
 import Feed from './pages/Feed';
 import Notifications from './pages/Notifications';
-import Communities from './pages/Communities';
+import CommunitiesList from './pages/CommunitiesList';
+import CommunityDetail from './pages/CommunityDetail';
+import ChurchDashboard from './pages/church/ChurchDashboard';
+import DonationPage from './pages/DonationPage';
+import GroupDetail from './pages/GroupDetail';
+
 import Profile from './pages/Profile';
+import UserProfile from './pages/UserProfile';
+import PrayerThread from './pages/PrayerThread';
+import CreatePostModal from './components/CreatePostModal';
 
 import './index.css';
 import './styles/MobileFrame.css';
@@ -11,33 +22,61 @@ import './styles/Feed.css';
 import './styles/Church.css';
 import './styles/Navbar.css';
 import './styles/Profile.css';
+import './styles/PrayerThread.css';
+import './styles/CreatePost.css';
+import './styles/Onboarding.css';
+import './styles/Donation.css';
+import './styles/Notifications.css';
+import './styles/Search.css';
+
+function AppContent() {
+  const location = useLocation();
+  const hideBottomNav = location.pathname.startsWith('/prayer') || location.pathname.startsWith('/church') || location.pathname.startsWith('/don') || location.pathname === '/' || location.pathname === '/onboarding' || location.pathname === '/gateway';
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+
+  return (
+    <div className="mobile-frame">
+      {/* iOS Status Bar */}
+      <div className="status-bar">
+        <span className="time">10:41</span>
+        <span className="icons">
+          <span>📶</span>
+          <span>🔋</span>
+        </span>
+      </div>
+
+      {/* Screen Content */}
+      <div className={`screen-container${hideBottomNav ? ' screen-no-nav' : ''}`}>
+        <Routes>
+          <Route path="/" element={<Gateway />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/communities" element={<CommunitiesList />} />
+          <Route path="/community/:id" element={<CommunityDetail />} />
+          <Route path="/group/:id" element={<GroupDetail />} />
+          <Route path="/church" element={<ChurchDashboard />} />
+
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/user/:id" element={<UserProfile />} />
+          <Route path="/prayer/:id" element={<PrayerThread />} />
+          <Route path="/don" element={<DonationPage />} />
+        </Routes>
+      </div>
+
+      {/* Bottom Navigation */}
+      {!hideBottomNav && <BottomNavbar onOpenCreate={() => setIsCreateOpen(true)} />}
+
+      {/* Modals */}
+      <CreatePostModal isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} />
+    </div>
+  );
+}
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="mobile-frame">
-        {/* iOS Status Bar */}
-        <div className="status-bar">
-          <span className="time">10:41</span>
-          <span className="icons">
-            <span>📶</span>
-            <span>🔋</span>
-          </span>
-        </div>
-
-        {/* Screen Content */}
-        <div className="screen-container">
-          <Routes>
-            <Route path="/" element={<Feed />} />
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/communities" element={<Communities />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </div>
-
-        {/* Bottom Navigation */}
-        <BottomNavbar />
-      </div>
+      <AppContent />
     </BrowserRouter>
   );
 }

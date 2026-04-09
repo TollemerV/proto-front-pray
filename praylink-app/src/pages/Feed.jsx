@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import AppHeader from '../components/AppHeader';
 import StoryRow from '../components/StoryRow';
-import VerseCard from '../components/VerseCard';
 import PostCard from '../components/PostCard';
+import ChurchBanner from '../components/ChurchBanner';
+import ShareSheet from '../components/ShareSheet';
+import SearchOverlay from '../components/SearchOverlay';
 
 const posts = [
   {
@@ -19,7 +22,6 @@ const posts = [
     time: 'Il y a 1h',
     content: '🎉 Témoignage : Après 3 ans de prière, j\'ai enfin trouvé un emploi ! Dieu est fidèle. Ne perdez jamais espoir, mes frères et sœurs. Il agit en Son temps parfait.',
     hashtags: ['témoignage', 'fidélité', 'emploi'],
-    socialProof: { icon: '❤️', text: '342 personnes ont aimé' },
     comments: 56, likes: 342,
   },
   {
@@ -42,17 +44,39 @@ const posts = [
 ];
 
 export default function Feed() {
+  const [sharingPost, setSharingPost] = useState(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+
   return (
-    <>
-      <AppHeader />
-      <StoryRow />
-      <VerseCard />
-      <div className="feed-container">
-        {posts.map((post, i) => (
-          <PostCard key={i} {...post} />
-        ))}
-        <div style={{ height: 20 }}></div>
+    <div className="feed-frame">
+      <div className="feed-scroll-area">
+        <AppHeader onSearch={() => setSearchOpen(true)} />
+        <StoryRow />
+        <ChurchBanner />
+        <div className="feed-container">
+          {posts.map((post, i) => (
+            <PostCard
+              key={i}
+              {...post}
+              onShare={() => setSharingPost(post)}
+            />
+          ))}
+          <div style={{ height: 20 }} />
+        </div>
       </div>
-    </>
+
+      {/* Share sheet — positioned absolute to feed-frame = stays in phone */}
+      {sharingPost && (
+        <ShareSheet
+          post={sharingPost}
+          onClose={() => setSharingPost(null)}
+        />
+      )}
+
+      {/* Search overlay */}
+      {searchOpen && (
+        <SearchOverlay onClose={() => setSearchOpen(false)} />
+      )}
+    </div>
   );
 }
