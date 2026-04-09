@@ -8,6 +8,7 @@ import Notifications from './pages/Notifications';
 import CommunitiesList from './pages/CommunitiesList';
 import CommunityDetail from './pages/CommunityDetail';
 import ChurchDashboard from './pages/church/ChurchDashboard';
+import DonationPage from './pages/DonationPage';
 
 import Profile from './pages/Profile';
 import PrayerThread from './pages/PrayerThread';
@@ -22,10 +23,12 @@ import './styles/Profile.css';
 import './styles/PrayerThread.css';
 import './styles/CreatePost.css';
 import './styles/Onboarding.css';
+import './styles/Donation.css';
+import './styles/Notifications.css';
 
 function AppContent() {
   const location = useLocation();
-  const hideBottomNav = location.pathname.startsWith('/prayer') || location.pathname.startsWith('/church') || location.pathname === '/' || location.pathname === '/onboarding' || location.pathname === '/gateway';
+  const hideBottomNav = location.pathname.startsWith('/prayer') || location.pathname.startsWith('/church') || location.pathname.startsWith('/don') || location.pathname === '/' || location.pathname === '/onboarding' || location.pathname === '/gateway';
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   return (
@@ -52,6 +55,7 @@ function AppContent() {
 
           <Route path="/profile" element={<Profile />} />
           <Route path="/prayer/:id" element={<PrayerThread />} />
+          <Route path="/don" element={<DonationPage />} />
         </Routes>
       </div>
 

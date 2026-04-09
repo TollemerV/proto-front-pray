@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { AppIcons } from './Icons';
 
+/* ── Mock commentaires de base ── */
+const SEED_COMMENTS = [
+  { id: 1, avatar: '👩🏽', name: 'Marie Dupont',    time: 'Il y a 10 min', text: 'Amen ! Que Dieu vous bénisse 🙏' },
+  { id: 2, avatar: '👨🏿', name: 'Pasteur Samuel',  time: 'Il y a 25 min', text: 'Merci pour ce partage, cela touche mon cœur ❤️' },
+];
+
 export default function PostCard({
   avatar,
   avatarColor = 'blue',
@@ -13,11 +19,17 @@ export default function PostCard({
   socialProof,
   comments = 0,
   likes = 0,
+  prayLabel,
 }) {
-  const [prayed, setPrayed]       = useState(false);
-  const [reposted, setReposted]   = useState(false);
-  const [bookmarked, setBookmarked] = useState(false);
+  const [prayed,      setPrayed]      = useState(false);
+  const [reposted,    setReposted]    = useState(false);
+  const [bookmarked,  setBookmarked]  = useState(false);
   const [prayAnimate, setPrayAnimate] = useState(false);
+
+  // Comments state
+  const [commentsOpen, setCommentsOpen] = useState(false);
+  const [commentList,  setCommentList]  = useState(SEED_COMMENTS.slice(0, Math.min(2, comments)));
+  const [inputText,    setInputText]    = useState('');
 
   const handlePray = () => {
     if (!prayed) {
@@ -26,6 +38,17 @@ export default function PostCard({
     }
     setPrayed(v => !v);
   };
+
+  const handleSendComment = () => {
+    if (!inputText.trim()) return;
+    setCommentList(prev => [
+      ...prev,
+      { id: Date.now(), avatar: '👤', name: 'Moi', time: 'À l\'instant', text: inputText.trim() },
+    ]);
+    setInputText('');
+  };
+
+  const totalComments = commentList.length;
 
   return (
     <div className="post-card">
@@ -64,8 +87,6 @@ export default function PostCard({
 
       {/* ── Action Bar ── */}
       <div className="post-actions-v2">
-
-        {/* LEFT — Pray, Comment, Repost, Share */}
         <div className="post-actions-v2-left">
 
           {/* Prier */}
@@ -85,10 +106,19 @@ export default function PostCard({
             </span>
           </button>
 
-          {/* Commenter */}
-          <button className="pav2-btn" title="Commenter">
-            <AppIcons.Comment size={22} stroke="var(--text-primary)" />
-            <span className="pav2-count">{comments}</span>
+          {/* Commenter — toggle */}
+          <button
+            className={`pav2-btn${commentsOpen ? ' pav2-comment-active' : ''}`}
+            title="Commenter"
+            onClick={() => setCommentsOpen(o => !o)}
+          >
+            <AppIcons.Comment
+              size={22}
+              stroke={commentsOpen ? 'var(--accent-blue)' : 'var(--text-primary)'}
+            />
+            <span className={`pav2-count${commentsOpen ? ' pav2-count-blue' : ''}`}>
+              {totalComments}
+            </span>
           </button>
 
           {/* Republier */}
@@ -107,10 +137,9 @@ export default function PostCard({
           <button className="pav2-btn" title="Partager">
             <AppIcons.Share size={22} stroke="var(--text-primary)" />
           </button>
-
         </div>
 
-        {/* RIGHT — Enregistrer */}
+        {/* Enregistrer */}
         <button
           className={`pav2-btn${bookmarked ? ' pav2-bookmark-active' : ''}`}
           onClick={() => setBookmarked(v => !v)}
@@ -122,8 +151,56 @@ export default function PostCard({
             fill={bookmarked ? 'var(--accent-blue)' : 'none'}
           />
         </button>
-
       </div>
+
+      {/* ── Comments section ── */}
+      {commentsOpen && (
+        <div className="post-comments-section">
+
+          {/* Liste */}
+          {commentList.length > 0 ? (
+            <div className="post-comments-list">
+              {commentList.map(c => (
+                <div key={c.id} className="post-comment-row">
+                  <span className="post-comment-avatar">{c.avatar}</span>
+                  <div className="post-comment-body">
+                    <div className="post-comment-meta">
+                      <span className="post-comment-name">{c.name}</span>
+                      <span className="post-comment-time">{c.time}</span>
+                    </div>
+                    <p className="post-comment-text">{c.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="post-comments-empty">Soyez le premier à commenter 🙏</p>
+          )}
+
+          {/* Input */}
+          <div className="post-comment-input-row">
+            <span className="post-comment-input-avatar">👤</span>
+            <div className="post-comment-input-wrap">
+              <input
+                className="post-comment-input"
+                type="text"
+                placeholder="Ajouter un commentaire…"
+                value={inputText}
+                onChange={e => setInputText(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleSendComment()}
+              />
+              <button
+                className="post-comment-send"
+                onClick={handleSendComment}
+                disabled={!inputText.trim()}
+              >
+                <AppIcons.Share size={16} stroke="white" />
+              </button>
+            </div>
+          </div>
+
+        </div>
+      )}
     </div>
   );
 }

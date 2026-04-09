@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ChurchInfo() {
   const [showInfo, setShowInfo] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="church-info">
@@ -57,7 +59,7 @@ export default function ChurchInfo() {
       </div>
       <div className="church-actions">
         <button className="church-btn primary">✝ Rejoindre</button>
-        <button className="church-btn secondary">💛 Faire un don</button>
+        <button className="church-btn secondary" onClick={() => navigate('/don')}>💛 Faire un don</button>
       </div>
     </div>
   );
