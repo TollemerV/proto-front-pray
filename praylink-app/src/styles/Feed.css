@@ -188,7 +188,7 @@
   color: var(--accent-pray);
 }
 
-/* --- Church Banner --- */
+/* --- Church Banner — Story-style Hub --- */
 
 /* State: no church */
 .church-banner-empty {
@@ -211,192 +211,274 @@
   white-space: nowrap; font-family: 'Inter', sans-serif;
 }
 
-/* State: has church — main card */
-.cb-card-wrap {
-  margin: 0 16px 16px;
-}
-
-.cb-card-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--accent-gold);
-  margin-bottom: 6px;
-  padding-left: 2px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.cb-card {
-  background: linear-gradient(145deg, #FFFDF7 0%, #FAF9FF 100%);
-  border-radius: var(--radius-lg);
+/* ── Hub wrapper ── */
+.cb-hub {
+  margin: 0 16px 14px;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
-  cursor: pointer;
-  transition: var(--transition);
-  overflow: hidden;
-  border: 1px solid rgba(212, 169, 75, 0.2);
-  position: relative;
+  padding: 14px 16px 12px;
+  animation: fadeInUp 0.35s ease-out;
 }
 
-/* Left accent stripe */
-.cb-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--accent-gold) 0%, var(--accent-pray) 100%);
-  border-radius: 3px 0 0 3px;
-}
-
-.cb-card:hover  { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
-.cb-card:active { transform: translateY(0); }
-
-/* Header row */
-.cb-header {
+/* ── Header: avatar ring + name + chevron ── */
+.cb-hub-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 16px 12px 20px;
+  padding: 4px 0 10px;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.cb-photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 11px;
-  object-fit: cover;
+.cb-hub-header:active {
+  opacity: 0.7;
+}
+
+/* Gold ring around church photo — like an "unseen story" */
+.cb-hub-avatar-ring {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  padding: 2.5px;
+  background: linear-gradient(135deg, #D4A94B 0%, #F0D78C 35%, #D4A94B 65%, #B8892E 100%);
   flex-shrink: 0;
-  border: 1.5px solid var(--border-light);
+  box-shadow: 0 2px 12px rgba(212, 169, 75, 0.3);
+  transition: var(--transition);
 }
 
-.cb-header-info {
+.cb-hub-header:hover .cb-hub-avatar-ring {
+  box-shadow: 0 3px 16px rgba(212, 169, 75, 0.45);
+  transform: scale(1.04);
+}
+
+.cb-hub-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid var(--bg-primary);
+}
+
+/* Church name + location */
+.cb-hub-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
   min-width: 0;
 }
 
-.cb-name {
-  font-size: 13px;
+.cb-hub-name {
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: -0.2px;
 }
 
-.cb-loc {
-  font-size: 11px;
-  color: var(--text-tertiary);
+.cb-hub-loc {
+  font-size: 11.5px;
   font-weight: 500;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 
-/* Notification badges */
-.cb-badges {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
+.cb-hub-loc svg {
+  color: var(--accent-red);
   flex-shrink: 0;
 }
 
-.cb-badge {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 20px;
-  white-space: nowrap;
+/* Chevron arrow */
+.cb-hub-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  box-shadow: var(--shadow-sm);
 }
 
-.cb-badge-new {
-  background: var(--accent-pray-light);
+/* ── Scrollable mini-cards ── */
+.cb-hub-cards {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 0 4px;
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  scroll-snap-type: x proximity;
+}
+
+.cb-hub-cards::-webkit-scrollbar { display: none; }
+
+/* Individual mini-card */
+.cb-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition);
+  scroll-snap-align: start;
+  border: 1px solid transparent;
+}
+
+.cb-mini-card:active {
+  transform: scale(0.96);
+}
+
+/* Mini-card icon container */
+.cb-mini-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Mini-card text block */
+.cb-mini-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.cb-mini-label {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.cb-mini-value {
+  font-size: 10.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+/* ── Theme: Event (gold) ── */
+.cb-mini-event {
+  background: linear-gradient(135deg, #FFFDF5, #FDF5E6);
+  border-color: rgba(212, 169, 75, 0.15);
+}
+
+.cb-mini-event .cb-mini-icon {
+  background: rgba(212, 169, 75, 0.15);
+  color: var(--accent-gold);
+}
+
+.cb-mini-event .cb-mini-label { color: #A0792D; }
+.cb-mini-event .cb-mini-value { color: var(--accent-gold); }
+
+/* ── Theme: Notification (purple) ── */
+.cb-mini-notif {
+  background: linear-gradient(135deg, #F8F5FF, #F0EDFF);
+  border-color: rgba(123, 104, 238, 0.12);
+}
+
+.cb-mini-notif .cb-mini-icon {
+  background: rgba(123, 104, 238, 0.12);
   color: var(--accent-pray);
 }
 
-.cb-badge-event {
-  background: var(--accent-gold-light);
-  color: var(--accent-gold);
-  font-weight: 600;
+.cb-mini-notif .cb-mini-label { color: var(--accent-pray); }
+.cb-mini-notif .cb-mini-value { color: #9B8AEE; }
+
+/* Notification dot on bell */
+.cb-mini-dot {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-red);
+  border: 1.5px solid #F8F5FF;
 }
 
-/* Separator */
-.cb-sep {
-  height: 1px;
-  background: var(--border-light);
-  margin: 0 16px;
+/* ── Theme: Verse (blue) ── */
+.cb-mini-verse {
+  background: linear-gradient(135deg, #F3F8FD, #E8F1FA);
+  border-color: rgba(107, 159, 212, 0.12);
 }
 
-/* Last post / verse */
-.cb-last-post {
-  padding: 12px 16px 14px;
-}
-
-.cb-lp-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.cb-lp-tag {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 2px 7px;
-  border-radius: 6px;
-}
-
-.cb-lp-tag-verse {
-  background: var(--accent-blue-light);
+.cb-mini-verse .cb-mini-icon {
+  background: rgba(107, 159, 212, 0.12);
   color: var(--accent-blue);
 }
 
-.cb-lp-tag-post {
-  background: var(--accent-pray-light);
-  color: var(--accent-pray);
+.cb-mini-verse .cb-mini-label { color: var(--accent-blue); }
+.cb-mini-verse .cb-mini-value { color: #8BB5DA; }
+
+/* ── Verse expanded panel ── */
+.cb-verse-expand {
+  margin-top: 8px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(107, 159, 212, 0.06), rgba(123, 104, 238, 0.06));
+  border-radius: 14px;
+  border: 1px solid rgba(107, 159, 212, 0.1);
+  cursor: pointer;
+  animation: verseSlideIn 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
 }
 
-.cb-lp-tag-event {
-  background: var(--accent-gold-light);
-  color: var(--accent-gold);
+.cb-verse-expand::before {
+  content: '"';
+  position: absolute;
+  top: -6px;
+  left: 8px;
+  font-size: 54px;
+  font-weight: 800;
+  color: rgba(107, 159, 212, 0.08);
+  line-height: 1;
+  pointer-events: none;
 }
 
-.cb-lp-time {
-  font-size: 11px;
-  color: var(--text-tertiary);
-  margin-left: auto;
-}
-
-.cb-lp-content {
-  font-size: 14px;
+.cb-verse-text {
+  font-size: 13.5px;
   line-height: 1.55;
   color: var(--text-primary);
   font-style: italic;
   margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
 }
 
-.cb-lp-author {
-  font-size: 12px;
+.cb-verse-ref {
+  font-size: 11.5px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--accent-blue);
 }
 
-/* See more footer */
-.cb-see-more {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 5px;
-  padding: 9px 16px;
-  border-top: 1px solid rgba(212,169,75,0.12);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent-pray);
+@keyframes verseSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 200px;
+  }
 }
 
 /* ── Story Viewer (fullscreen in mobile frame) ── */

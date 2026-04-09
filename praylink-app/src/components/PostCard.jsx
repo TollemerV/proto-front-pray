@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppIcons } from './Icons';
 
 /* ── Mock commentaires de base ── */
@@ -6,6 +7,18 @@ const SEED_COMMENTS = [
   { id: 1, avatar: '👩🏽', name: 'Marie Dupont',    time: 'Il y a 10 min', text: 'Amen ! Que Dieu vous bénisse 🙏' },
   { id: 2, avatar: '👨🏿', name: 'Pasteur Samuel',  time: 'Il y a 25 min', text: 'Merci pour ce partage, cela touche mon cœur ❤️' },
 ];
+
+/* ── Username to slug mapping for routing ── */
+const nameToSlug = (name) => {
+  const map = {
+    'Marie Dupont': 'marie-dupont',
+    'David Okafor': 'david-okafor',
+    'Sarah Martin': 'sarah-martin',
+    'Jean-Pierre L.': 'jean-pierre',
+    'Pasteur Samuel': 'pasteur-emmanuel',
+  };
+  return map[name] || name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+};
 
 export default function PostCard({
   avatar,
@@ -22,6 +35,7 @@ export default function PostCard({
   prayLabel,
   onShare,
 }) {
+  const navigate = useNavigate();
   const [prayed,      setPrayed]      = useState(false);
   const [reposted,    setReposted]    = useState(false);
   const [bookmarked,  setBookmarked]  = useState(false);
@@ -49,16 +63,26 @@ export default function PostCard({
     setInputText('');
   };
 
+  const handleUserClick = () => {
+    navigate(`/user/${nameToSlug(username)}`);
+  };
+
   const totalComments = commentList.length;
 
   return (
     <div className="post-card">
       {/* Header */}
       <div className="post-header">
-        <div className={`post-avatar-placeholder ${avatarColor}`}>{avatar}</div>
+        <div
+          className={`post-avatar-placeholder ${avatarColor}`}
+          onClick={handleUserClick}
+          style={{ cursor: 'pointer' }}
+        >
+          {avatar}
+        </div>
         <div className="post-user-info">
           <div className="post-username">
-            {username}
+            <span onClick={handleUserClick} style={{ cursor: 'pointer' }}>{username}</span>
             {badge && <span className={`post-badge ${badgeType}`}>{badge}</span>}
           </div>
           <div className="post-time">{time}</div>

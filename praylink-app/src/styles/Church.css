@@ -608,6 +608,23 @@
   color: white;
 }
 
+.member-action-btn.follow {
+  border-color: var(--accent-pray);
+  color: var(--accent-pray);
+  background: transparent;
+}
+
+.member-action-btn.follow:hover {
+  background: var(--accent-pray);
+  color: white;
+}
+
+.member-action-btn.follow.active {
+  background: var(--accent-pray);
+  border-color: var(--accent-pray);
+  color: white;
+}
+
 .member-action-btn.message {
   border-color: var(--border-medium);
   color: var(--text-secondary);
@@ -2174,6 +2191,324 @@
   font-size: 18px;
   font-weight: 800;
   color: var(--accent-green);
+}
+
+/* ── Hero badges row ── */
+.ch-donation-hero-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ── Quick Stats Grid ── */
+.ch-don-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.ch-don-stat-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: var(--transition);
+}
+
+.ch-don-stat-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.ch-don-stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.ch-don-stat-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.ch-don-stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ── Weekly Chart ── */
+.ch-don-chart-card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 20px 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ch-don-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 120px;
+  gap: 12px;
+}
+
+.ch-don-chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+}
+
+.ch-don-chart-value {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.ch-don-chart-bar-track {
+  flex: 1;
+  width: 100%;
+  max-width: 36px;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.ch-don-chart-bar-fill {
+  width: 100%;
+  background: linear-gradient(180deg, #7B68EE, #6B9FD4);
+  border-radius: 8px;
+  min-height: 4px;
+  transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ch-don-chart-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+}
+
+/* ── Category Breakdown ── */
+.ch-don-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ch-don-cat-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ch-don-cat-color {
+  width: 10px;
+  height: 36px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.ch-don-cat-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ch-don-cat-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ch-don-cat-bar-track {
+  height: 5px;
+  background: var(--bg-primary);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ch-don-cat-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ch-don-cat-values {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.ch-don-cat-amount {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.ch-don-cat-pct {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+/* ── Goal Editing Bottom Sheet ── */
+.ch-don-goal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.18s ease-out;
+}
+
+.ch-don-goal-sheet {
+  width: 100%;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  padding: 0 20px 28px;
+  animation: slideUp 0.25s ease-out;
+}
+
+.ch-don-goal-handle {
+  width: 36px;
+  height: 4px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 2px;
+  margin: 10px auto 16px;
+}
+
+.ch-don-goal-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.ch-don-goal-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+
+.ch-don-goal-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ch-don-goal-input {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 2px solid var(--border-light);
+  background: var(--bg-primary);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+  -moz-appearance: textfield;
+}
+
+.ch-don-goal-input::-webkit-outer-spin-button,
+.ch-don-goal-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ch-don-goal-input:focus {
+  border-color: var(--accent-pray);
+  box-shadow: 0 0 0 3px rgba(123,104,238,0.1);
+}
+
+.ch-don-goal-currency {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-tertiary);
+}
+
+.ch-don-goal-presets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.ch-don-goal-preset {
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-light);
+  background: var(--bg-card);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.15s ease;
+}
+
+.ch-don-goal-preset:hover {
+  border-color: var(--accent-pray);
+  color: var(--accent-pray);
+}
+
+.ch-don-goal-preset.active {
+  background: var(--accent-pray);
+  border-color: var(--accent-pray);
+  color: white;
+}
+
+.ch-don-goal-save {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-pray));
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(123,104,238,0.3);
+  transition: all 0.2s ease;
+}
+
+.ch-don-goal-save:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(123,104,238,0.4);
 }
 
 /* ========================================

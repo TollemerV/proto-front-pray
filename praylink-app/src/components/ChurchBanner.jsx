@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import churchPhoto from '../assets/church-photo.png';
 
@@ -8,16 +9,15 @@ const MY_CHURCH = {
   location: 'Paris 8e',
   newPosts: 3,
   nextEvent: { label: 'Culte', date: 'Dim. 10h30' },
-  lastPost: {
-    author: 'Pasteur Samuel',
-    time: 'Il y a 2h',
-    content: '« Car je connais les projets que j\'ai formés sur vous, dit l\'Éternel, projets de paix et non de malheur. » — Jérémie 29:11',
-    type: 'verse',
+  verse: {
+    text: '« Car je connais les projets que j\'ai formés sur vous, dit l\'Éternel, projets de paix et non de malheur. »',
+    ref: 'Jérémie 29:11',
   },
 };
 
 export default function ChurchBanner() {
   const navigate = useNavigate();
+  const [verseExpanded, setVerseExpanded] = useState(false);
 
   // ── Sans église ─────────────────────────────────────────────────
   if (!MY_CHURCH) {
@@ -35,63 +35,98 @@ export default function ChurchBanner() {
     );
   }
 
-  // ── Avec église ─────────────────────────────────────────────────
+  // ── Avec église — Story-style Hub ─────────────────────────────
   return (
-    <div className="cb-card-wrap">
-      <p className="cb-card-label">⛪ Ma communauté</p>
-      <div className="cb-card" onClick={() => navigate(`/community/${MY_CHURCH.id}`)}>
-
-        {/* Header : photo + nom + badges */}
-        <div className="cb-header">
-          <img src={churchPhoto} alt={MY_CHURCH.name} className="cb-photo" />
-          <div className="cb-header-info">
-            <span className="cb-name">{MY_CHURCH.name}</span>
-            <span className="cb-loc">📍 {MY_CHURCH.location}</span>
-          </div>
-          <div className="cb-badges">
-            {MY_CHURCH.newPosts > 0 && (
-              <span className="cb-badge cb-badge-new">
-                🔔 {MY_CHURCH.newPosts} posts non lus
-              </span>
-            )}
-            {MY_CHURCH.nextEvent && (
-              <span className="cb-badge cb-badge-event">
-                📅 {MY_CHURCH.nextEvent.date}
-              </span>
-            )}
-          </div>
+    <div className="cb-hub">
+      {/* Top row: church identity */}
+      <div
+        className="cb-hub-header"
+        onClick={() => navigate(`/community/${MY_CHURCH.id}`)}
+      >
+        <div className="cb-hub-avatar-ring">
+          <img src={churchPhoto} alt={MY_CHURCH.name} className="cb-hub-avatar" />
         </div>
-
-        {/* Séparateur */}
-        <div className="cb-sep" />
-
-        {/* Dernier post / verset */}
-        <div className="cb-last-post">
-          <div className="cb-lp-meta">
-            {MY_CHURCH.lastPost.type === 'verse' && (
-              <span className="cb-lp-tag cb-lp-tag-verse">✨ Verset du jour</span>
-            )}
-            {MY_CHURCH.lastPost.type === 'post' && (
-              <span className="cb-lp-tag cb-lp-tag-post">📝 Dernier post</span>
-            )}
-            {MY_CHURCH.lastPost.type === 'event' && (
-              <span className="cb-lp-tag cb-lp-tag-event">📅 Événement</span>
-            )}
-            <span className="cb-lp-time">{MY_CHURCH.lastPost.time}</span>
-          </div>
-          <p className="cb-lp-content">{MY_CHURCH.lastPost.content}</p>
-          <span className="cb-lp-author">— {MY_CHURCH.lastPost.author}</span>
+        <div className="cb-hub-info">
+          <span className="cb-hub-name">{MY_CHURCH.name}</span>
+          <span className="cb-hub-loc">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            {MY_CHURCH.location}
+          </span>
         </div>
-
-        {/* Voir → */}
-        <div className="cb-see-more">
-          <span>Voir l'église</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        <div className="cb-hub-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m9 18 6-6-6-6"/>
           </svg>
         </div>
-
       </div>
+
+      {/* Scrollable mini-cards */}
+      <div className="cb-hub-cards">
+        {/* Next event */}
+        {MY_CHURCH.nextEvent && (
+          <div
+            className="cb-mini-card cb-mini-event"
+            onClick={() => navigate(`/community/${MY_CHURCH.id}`)}
+          >
+            <div className="cb-mini-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>
+              </svg>
+            </div>
+            <div className="cb-mini-text">
+              <span className="cb-mini-label">{MY_CHURCH.nextEvent.label}</span>
+              <span className="cb-mini-value">{MY_CHURCH.nextEvent.date}</span>
+            </div>
+          </div>
+        )}
+
+        {/* Unread posts */}
+        {MY_CHURCH.newPosts > 0 && (
+          <div
+            className="cb-mini-card cb-mini-notif"
+            onClick={() => navigate(`/community/${MY_CHURCH.id}`)}
+          >
+            <div className="cb-mini-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+              </svg>
+              <span className="cb-mini-dot" />
+            </div>
+            <div className="cb-mini-text">
+              <span className="cb-mini-label">{MY_CHURCH.newPosts} non lus</span>
+              <span className="cb-mini-value">Nouveautés</span>
+            </div>
+          </div>
+        )}
+
+        {/* Verse of the day */}
+        {MY_CHURCH.verse && (
+          <div
+            className="cb-mini-card cb-mini-verse"
+            onClick={() => setVerseExpanded(!verseExpanded)}
+          >
+            <div className="cb-mini-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+              </svg>
+            </div>
+            <div className="cb-mini-text">
+              <span className="cb-mini-label">Verset du jour</span>
+              <span className="cb-mini-value">{MY_CHURCH.verse.ref}</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Verse expanded panel */}
+      {verseExpanded && MY_CHURCH.verse && (
+        <div className="cb-verse-expand" onClick={() => setVerseExpanded(false)}>
+          <p className="cb-verse-text">{MY_CHURCH.verse.text}</p>
+          <span className="cb-verse-ref">— {MY_CHURCH.verse.ref}</span>
+        </div>
+      )}
     </div>
   );
 }

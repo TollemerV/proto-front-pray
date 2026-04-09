@@ -2,6 +2,26 @@
    Notifications / Activité page
    ========================================= */
 
+/* ── Notif frame (positions bottom sheets absolute) ── */
+.notif-frame {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.notif-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.notif-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
 /* ── Section wrapper ── */
 .notif-section {
   margin-bottom: 8px;
@@ -243,3 +263,335 @@
   background: var(--accent-pray);
   flex-shrink: 0;
 }
+
+/* Chevron indicator */
+.notif-chevron {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.notif-row:active {
+  background: rgba(0,0,0,0.04);
+}
+
+/* ── Events empty state ── */
+.notif-events-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 24px 16px;
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
+.notif-events-empty span {
+  font-size: 28px;
+}
+
+/* =========================================
+   Event Detail — Bottom Sheet
+   ========================================= */
+
+.event-detail-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  animation: eventOverlayIn 0.25s ease;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+@keyframes eventOverlayIn {
+  from { background: rgba(0,0,0,0); }
+  to   { background: rgba(0,0,0,0.45); }
+}
+
+.event-detail-sheet {
+  width: 100%;
+  max-height: 88%;
+  background: var(--bg-primary);
+  border-radius: 24px 24px 0 0;
+  overflow-y: auto;
+  padding: 0 20px 32px;
+  animation: eventSheetSlideUp 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes eventSheetSlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* Drag handle */
+.event-detail-handle {
+  width: 36px;
+  height: 4px;
+  background: var(--border-medium);
+  border-radius: 4px;
+  margin: 12px auto 18px;
+}
+
+/* ── Hero: emoji + title ── */
+.event-detail-hero {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.event-detail-emoji {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.event-detail-header-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-detail-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 3px;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+}
+
+.event-detail-church {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+/* ── Info pills ── */
+.event-detail-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.event-detail-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.event-detail-pill svg {
+  color: var(--accent-pray);
+  flex-shrink: 0;
+}
+
+/* ── Countdown strip ── */
+.event-detail-countdown-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.event-detail-countdown-strip.urgent {
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+}
+
+.event-detail-countdown-strip.soon {
+  background: rgba(245, 158, 11, 0.08);
+  color: #D97706;
+}
+
+.event-detail-countdown-strip.normal {
+  background: var(--accent-pray-light);
+  color: var(--accent-pray);
+}
+
+.event-detail-countdown-icon {
+  font-size: 16px;
+}
+
+/* ── Description section ── */
+.event-detail-section {
+  margin-bottom: 18px;
+}
+
+.event-detail-section-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-tertiary);
+  margin: 0 0 8px;
+}
+
+.event-detail-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  background: var(--bg-card);
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+}
+
+/* ── Organizer + attendees ── */
+.event-detail-meta-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.event-detail-meta-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+}
+
+.event-detail-meta-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+}
+
+.event-detail-meta-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ── Action buttons ── */
+.event-detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-detail-btn-primary {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: var(--accent-pray);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.event-detail-btn-primary:hover {
+  background: #6A58D4;
+}
+
+.event-detail-btn-cancel {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: transparent;
+  color: var(--accent-red);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.event-detail-btn-cancel:hover {
+  background: var(--accent-red-light);
+}
+
+/* ── Confirm dialog ── */
+.event-detail-confirm {
+  background: var(--accent-red-light);
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  animation: fadeInUp 0.25s ease-out;
+}
+
+.event-detail-confirm-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+.event-detail-confirm-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.event-detail-btn-keep {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-medium);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.event-detail-btn-keep:hover {
+  border-color: var(--accent-pray);
+  color: var(--accent-pray);
+}
+
+.event-detail-btn-remove {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent-red);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.event-detail-btn-remove:hover {
+  background: #E05555;
+}
+

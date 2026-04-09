@@ -30,7 +30,7 @@ export default function CommunitiesList() {
         </h2>
         <div className="community-cards-list" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           
-          <div className="community-card" onClick={() => navigate('/community/priere-soir')} style={{ backgroundColor: 'var(--bg-card)', padding: '16px', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '16px', cursor: 'pointer', boxShadow: 'var(--shadow-sm)' }}>
+          <div className="community-card" onClick={() => navigate('/group/priere-soir')} style={{ backgroundColor: 'var(--bg-card)', padding: '16px', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '16px', cursor: 'pointer', boxShadow: 'var(--shadow-sm)' }}>
              <div className="community-avatar" style={{ minWidth: '48px', height: '48px', borderRadius: '12px', backgroundColor: 'var(--accent-pray-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>🙏</div>
              <div className="community-info">
                <div style={{ fontWeight: '700', fontSize: '16px', color: 'var(--text-primary)', marginBottom: '4px' }}>Groupe prière du soir</div>
@@ -38,7 +38,7 @@ export default function CommunitiesList() {
              </div>
           </div>
 
-          <div className="community-card" onClick={() => navigate('/community/entrepreneurs')} style={{ backgroundColor: 'var(--bg-card)', padding: '16px', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '16px', cursor: 'pointer', boxShadow: 'var(--shadow-sm)' }}>
+          <div className="community-card" onClick={() => navigate('/group/entrepreneurs')} style={{ backgroundColor: 'var(--bg-card)', padding: '16px', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: '16px', cursor: 'pointer', boxShadow: 'var(--shadow-sm)' }}>
              <div className="community-avatar" style={{ minWidth: '48px', height: '48px', borderRadius: '12px', backgroundColor: 'var(--accent-blue-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>💼</div>
              <div className="community-info">
                <div style={{ fontWeight: '700', fontSize: '16px', color: 'var(--text-primary)', marginBottom: '4px' }}>Entrepreneurs chrétiens</div>

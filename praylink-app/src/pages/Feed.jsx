@@ -4,6 +4,7 @@ import StoryRow from '../components/StoryRow';
 import PostCard from '../components/PostCard';
 import ChurchBanner from '../components/ChurchBanner';
 import ShareSheet from '../components/ShareSheet';
+import SearchOverlay from '../components/SearchOverlay';
 
 const posts = [
   {
@@ -44,11 +45,12 @@ const posts = [
 
 export default function Feed() {
   const [sharingPost, setSharingPost] = useState(null);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <div className="feed-frame">
       <div className="feed-scroll-area">
-        <AppHeader />
+        <AppHeader onSearch={() => setSearchOpen(true)} />
         <StoryRow />
         <ChurchBanner />
         <div className="feed-container">
@@ -69,6 +71,11 @@ export default function Feed() {
           post={sharingPost}
           onClose={() => setSharingPost(null)}
         />
+      )}
+
+      {/* Search overlay */}
+      {searchOpen && (
+        <SearchOverlay onClose={() => setSearchOpen(false)} />
       )}
     </div>
   );

@@ -9,8 +9,10 @@ import CommunitiesList from './pages/CommunitiesList';
 import CommunityDetail from './pages/CommunityDetail';
 import ChurchDashboard from './pages/church/ChurchDashboard';
 import DonationPage from './pages/DonationPage';
+import GroupDetail from './pages/GroupDetail';
 
 import Profile from './pages/Profile';
+import UserProfile from './pages/UserProfile';
 import PrayerThread from './pages/PrayerThread';
 import CreatePostModal from './components/CreatePostModal';
 
@@ -25,6 +27,7 @@ import './styles/CreatePost.css';
 import './styles/Onboarding.css';
 import './styles/Donation.css';
 import './styles/Notifications.css';
+import './styles/Search.css';
 
 function AppContent() {
   const location = useLocation();
@@ -51,9 +54,11 @@ function AppContent() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/communities" element={<CommunitiesList />} />
           <Route path="/community/:id" element={<CommunityDetail />} />
+          <Route path="/group/:id" element={<GroupDetail />} />
           <Route path="/church" element={<ChurchDashboard />} />
 
           <Route path="/profile" element={<Profile />} />
+          <Route path="/user/:id" element={<UserProfile />} />
           <Route path="/prayer/:id" element={<PrayerThread />} />
           <Route path="/don" element={<DonationPage />} />
         </Routes>
